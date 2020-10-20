@@ -11,7 +11,7 @@ El sistema esta implementado en el lenguaje de programacion **Java**, y cuenta c
 
 Por cuestiones de contingencia, el proyecto fue realizado a distancia.
 
-##Utilización:
+## Utilización:
 
 El programa cuenta con un menu con las siguientes opciones:
 Registrar Alumnos
