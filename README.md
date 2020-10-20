@@ -27,6 +27,6 @@ Registrar Alumnos
 
 
 ## Autores:
-- ** Christian Leyva**
+-  **Christian Leyva**
 -  **Fernanda Aguilar**
 -  **Berenice Martínez**
