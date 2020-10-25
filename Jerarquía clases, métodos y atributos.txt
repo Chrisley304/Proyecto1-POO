@@ -1,0 +1,99 @@
+JERARQUÍA CLASES, MÉTODOS Y ATRIBUTOS
+
+Clases:
+	- Alumno
+	- Profesor
+	- Grupos
+	- Asignaturas
+	- Main
+
+
+Clase Main:
+Atributos:
+-Si tiene laboratorio, cree a un nuevo objeto asignaturaLaboratorio
+
+Métodos de clase:
+-Menú
+-Pedir datos de entrada por constructor
+-Mostrar profesores
+-Mostrar Asignaturas
+-Mostrar grupos(ESTE MÉTODO ES SOLO PARA INSCRIPCIÓN)
+-Asignar atributos del Contructor de la clase Grupos(clave única, asignatura,profesor)
+-Mostrar Grupos, alumnos registrados, alumnos inscritos(todos sus datos)
+
+
+Clase Alumno:
+Atributos:
+-Nombre
+-Apellido
+-No.Cuenta
+-Edad
+*Domicilio
+-Semestre
+-Correo electrónico
+-No.Alumnos(static):número alumnos
+
+Métodos:
+-Mostrar Alumno
+-Constructor de Alumno cocn la variable static
+
+
+
+Clase Profesor:
+Atributos:
+-Nombre
+-Apellido
+-Título(Ing,M en C, Dra, etc)
+-No.Maestro(static):número maestros
+
+Métodos:
+-Constrcuctor profesor con la variable static
+
+
+
+Clase Grupos:
+Atributos:
+-Horarios(HORAS,clasificar por asignatura)
+-Salón
+-Profesor Lista de profesores;
+-Número de grupo
+-Asignatura asignatura;
+-Días
+-No.Grupo(static):no puede estar inscrito un alumno en más de 3 grupos
+
+Métodos:
+-Mostrar grupos(clave única, asignatura,profesor,horario,salon)
+-Contructor(clave única, asignatura,profesor,horario,salon)
+
+
+Clase Asignaturas:
+Atributos:
+-Nombre
+-Clave
+-No.Grupos existentes de la asignatura
+-Créditos
+-Boolean Laboratorio->True
+-Divisiones:
+1.División de Ciencias Básicas.
+2.División de Ingenierías Civil y Geomática.
+3.División de Ingeniería Eléctrica.
+4.División de Ingeniería en Ciencias de la Tierra.
+5.División de Ingeniería Mecánica e Industrial.
+6.División de Ciencias Sociales y Humanidades.
+7.División de Educación Continua y a Distancia.
+-Tipo:String T(teroría)/String L(laboratorio normal)
+
+
+Métodos:
+Al inscribir al alumno, NO Registrar
+-Si Materia es materiaConLaboratorio:
+	Crea nuevaAsignatura(L+)
+
+if(materia==materiaConLaboratorio.getNombre()){
+	Asignatura a1 = new Asignatura("Laboratorio " + materia)
+}
+
+-get:para todos los atributos
+-Constructor(atributos)
+-Mostrar asignatura
+-Existe la asignatura de entrada o no(SOLO EN INSCRIPCIÓN)
