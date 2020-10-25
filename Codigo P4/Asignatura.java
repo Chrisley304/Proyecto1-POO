@@ -3,6 +3,7 @@ public class Asignatura {
     String nombre;
     int clave;
     int creditos;
+    boolean laboratorio;
     Profesor profe;
 
     public Asignatura(){

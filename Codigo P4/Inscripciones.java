@@ -4,8 +4,9 @@ public class Inscripciones{
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int opcion;
-        Alumno alumnos[] = new Alumno [5]; //Maximo 5
-        Asignatura materias[] = new Asignatura[5];
+        Alumno[] alumnos = new Alumno [5]; //Maximo 5
+
+        Asignatura[] materias = new Asignatura[5];
 
         System.out.println("Bienvienido a las inscripciones 2020-1!\nPor favor elija una opcion:");
         do{
@@ -64,7 +65,8 @@ public class Inscripciones{
                         System.out.print("Ingrese la creditos: ");
                         int creditos = sc.nextInt();
                         sc.nextLine();
-                        materias[indice] = new Asignatura(nombre,clave, creditos);
+                        materias[indice] = new Asignatura(nombre,clave, creditos); //Materia normal
+
 
                         boolean barco;
                         System.out.print("Se procedera a registrar la informacion del profesor de la asignatura: \n");
@@ -75,11 +77,7 @@ public class Inscripciones{
                         sc.nextLine();
                         System.out.print("Es barco : ('si' o 'no'): ");
                         String siono= sc.nextLine();
-                        if (siono.equals("si")){
-                            barco = true;
-                        }else{
-                            barco = false;
-                        }
+                        barco = siono.equals("si"); // Si es igual, barco sera = a true
                         materias[indice].AsociarProfesor(nombre, calificacion , barco);
                     }
                 }break;
