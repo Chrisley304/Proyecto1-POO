@@ -2,9 +2,9 @@
 
 Este proyecto fue creado para la materia de Programacion Orientada a Objetos de la **Facultad de Ingenieria, UNAM.**
 
-El mismo consistio en realizar un programa que permita hacer una **simulación del sistema de inscripciones** para alumnos, profesores, grupos y asignaturas.
+El mismo consistió en realizar un programa que permita hacer una **simulación del sistema de inscripciones** para alumnos, profesores, grupos y asignaturas.
 
-El sistema esta implementado en el lenguaje de programacion **Java**, y cuenta con los siguientes elementos:
+El sistema está implementado en el lenguaje de programación **Java**, y cuenta con los siguientes elementos:
 - Listas (List)
 - Conjuntos (Set)
 - Tablas Hash (Map)
