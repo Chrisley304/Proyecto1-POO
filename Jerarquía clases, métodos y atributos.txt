@@ -1,5 +1,5 @@
-JERARQUÍA CLASES, MÉTODOS Y ATRIBUTOS
-
+JERARQUï¿½A CLASES, Mï¿½TODOS Y ATRIBUTOS
+Hola prueba
 Como implemetar los objetos:
     - Alumnos -> Hash (no.cuenta) <-- Bere
     - Asignaturas -> Lista (indice) <-- Todos xd
@@ -19,13 +19,13 @@ Clase Main:
 Atributos:
 -Si tiene laboratorio, cree a un nuevo objeto asignaturaLaboratorio
 
-Métodos de clase:
--Menú
+Mï¿½todos de clase:
+-Menï¿½
 -Pedir datos de entrada por constructor
 -Mostrar profesores
 -Mostrar Asignaturas
--Mostrar grupos(ESTE MÉTODO ES SOLO PARA INSCRIPCIÓN)
--Asignar atributos del Contructor de la clase Grupos(clave única, asignatura,profesor)
+-Mostrar grupos(ESTE Mï¿½TODO ES SOLO PARA INSCRIPCIï¿½N)
+-Asignar atributos del Contructor de la clase Grupos(clave ï¿½nica, asignatura,profesor)
 -Mostrar Grupos, alumnos registrados, alumnos inscritos(todos sus datos)
 
 
@@ -37,10 +37,10 @@ Atributos:
 -Edad
 *Domicilio
 -Semestre
--Correo electrónico
--No.Alumnos(static):número alumnos
+-Correo electrï¿½nico
+-No.Alumnos(static):nï¿½mero alumnos
 
-Métodos:
+Mï¿½todos:
 -Mostrar Alumno
 -Constructor de Alumno cocn la variable static
 
@@ -50,10 +50,10 @@ Clase Profesor:
 Atributos:
 -Nombre
 -Apellido
--Título(Ing,M en C, Dra, etc)
--No.Maestro(static):número maestros
+-Tï¿½tulo(Ing,M en C, Dra, etc)
+-No.Maestro(static):nï¿½mero maestros
 
-Métodos:
+Mï¿½todos:
 -Constrcuctor profesor con la variable static
 
 
@@ -61,16 +61,16 @@ Métodos:
 Clase Grupos:
 Atributos:
     -Horarios(HORAS,clasificar por asignatura)
-    -Salón
+    -Salï¿½n
     -Profesor Lista de profesores;
-    -Número de grupo
+    -Nï¿½mero de grupo
     -Asignatura asignatura;
-    -Días
-    -No.Grupo (static):no puede estar inscrito un alumno en más de 3 grupos
+    -Dï¿½as
+    -No.Grupo (static):no puede estar inscrito un alumno en mï¿½s de 3 grupos
 
-Métodos:
--Mostrar grupos(clave única, asignatura,profesor,horario,salon)
--Contructor(clave única, asignatura,profesor,horario,salon)
+Mï¿½todos:
+-Mostrar grupos(clave ï¿½nica, asignatura,profesor,horario,salon)
+-Contructor(clave ï¿½nica, asignatura,profesor,horario,salon)
 
 
 Clase Asignaturas:
@@ -78,20 +78,20 @@ Atributos:
 -Nombre
 -Clave
 -No.Grupos existentes de la asignatura
--Créditos
+-Crï¿½ditos
 -Boolean Laboratorio->True
 -Divisiones:
-    1.División de Ciencias Básicas.
-    2.División de Ingenierías Civil y Geomática.
-    3.División de Ingeniería Eléctrica.
-    4.División de Ingeniería en Ciencias de la Tierra.
-    5.División de Ingeniería Mecánica e Industrial.
-    6.División de Ciencias Sociales y Humanidades.
-    7.División de Educación Continua y a Distancia.
--Tipo:String T(teroría)/String L(laboratorio normal)
+    1.Divisiï¿½n de Ciencias Bï¿½sicas.
+    2.Divisiï¿½n de Ingenierï¿½as Civil y Geomï¿½tica.
+    3.Divisiï¿½n de Ingenierï¿½a Elï¿½ctrica.
+    4.Divisiï¿½n de Ingenierï¿½a en Ciencias de la Tierra.
+    5.Divisiï¿½n de Ingenierï¿½a Mecï¿½nica e Industrial.
+    6.Divisiï¿½n de Ciencias Sociales y Humanidades.
+    7.Divisiï¿½n de Educaciï¿½n Continua y a Distancia.
+-Tipo:String T(terorï¿½a)/String L(laboratorio normal)
 
 
-Métodos:
+Mï¿½todos:
 Al inscribir al alumno, NO Registrar
 -Si Materia es materiaConLaboratorio:
 	Crea nuevaAsignatura(L+)
@@ -103,4 +103,4 @@ if(materia==materiaConLaboratorio.getNombre()){
 -get:para todos los atributos
 -Constructor(atributos)
 -Mostrar asignatura
--Existe la asignatura de entrada o no(SOLO EN INSCRIPCIÓN)
+-Existe la asignatura de entrada o no(SOLO EN INSCRIPCIï¿½N)
