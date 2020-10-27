@@ -1,5 +1,4 @@
 JERARQU�A CLASES, M�TODOS Y ATRIBUTOS
-Hola prueba
 Como implemetar los objetos:
     - Alumnos -> Hash (no.cuenta) <-- Bere
     - Asignaturas -> Lista (indice) <-- Todos xd
