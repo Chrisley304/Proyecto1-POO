@@ -1,3 +1,5 @@
+package CodigoP4_Chris;
+
 public class Asignatura {
     
     String nombre;
@@ -15,7 +17,7 @@ public class Asignatura {
         setclave(clave);
         setcreditos(creditos);
     }
-
+.
     public void setnombre(String nombre) {
         this.nombre = nombre;
     }

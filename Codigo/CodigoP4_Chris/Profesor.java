@@ -1,3 +1,5 @@
+package CodigoP4_Chris;
+
 public class Profesor {
     static int numProf;
 
@@ -27,7 +29,7 @@ public class Profesor {
     }
 
     public void MostrarProfesor(){
-        System.out.printf("Nombre del Profesor: %s\n",nombre);
+        System.out.printf("Nombre del CodigoP4_Chris.Profesor: %s\n",nombre);
         System.out.printf("Calificacion del profesor: %f\n",calificacion);
         EsBarco();
     }

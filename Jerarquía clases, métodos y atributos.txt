@@ -1,14 +1,16 @@
 JERARQU�A CLASES, M�TODOS Y ATRIBUTOS
+
+    - Grupos -> Hash (clave materia) -> Lista ( numero de grupo)    <- Christian
+    Main : Hash de Grupos: {Dentro, habra una lista de grupos POR MATERIA: [La lista sera de tipo Grupo]}
 Como implemetar los objetos:
     - Alumnos -> Hash (no.cuenta) <-- Bere
     - Asignaturas -> Lista (indice) <-- Todos xd
-    - Grupos -> Hash (clave materia) -> Lista ( numero de grupo)    <- Christian
     - Profesores -> Conjuntos (HashSet)   <-- Fer
 
 
 Clases:
-	- Alumno
-	- Profesor
+	- CodigoP4_Chris.Alumno
+	- CodigoP4_Chris.Profesor
 	- Grupos
 	- Asignaturas
 	- Main
@@ -28,24 +30,24 @@ M�todos de clase:
 -Mostrar Grupos, alumnos registrados, alumnos inscritos(todos sus datos)
 
 
-Clase Alumno:
+Clase CodigoP4_Chris.Alumno:
 Atributos:
 -Nombre
 -Apellido
 -No.Cuenta
 -Edad
-*Domicilio
+*CodigoP4_Chris.Domicilio
 -Semestre
 -Correo electr�nico
 -No.Alumnos(static):n�mero alumnos
 
 M�todos:
--Mostrar Alumno
--Constructor de Alumno cocn la variable static
+-Mostrar CodigoP4_Chris.Alumno
+-Constructor de CodigoP4_Chris.Alumno cocn la variable static
 
 
 
-Clase Profesor:
+Clase CodigoP4_Chris.Profesor:
 Atributos:
 -Nombre
 -Apellido
@@ -59,12 +61,10 @@ M�todos:
 
 Clase Grupos:
 Atributos:
-    -Horarios(HORAS,clasificar por asignatura)
+    -Horarios(HORAS,clasificar por asignatura,-D�as)
     -Sal�n
-    -Profesor Lista de profesores;
-    -N�mero de grupo
-    -Asignatura asignatura;
-    -D�as
+    -CodigoP4_Chris.Profesor Lista de profesores;
+    -CodigoP4_Chris.Asignatura asignatura;
     -No.Grupo (static):no puede estar inscrito un alumno en m�s de 3 grupos
 
 M�todos:
@@ -96,7 +96,7 @@ Al inscribir al alumno, NO Registrar
 	Crea nuevaAsignatura(L+)
 
 if(materia==materiaConLaboratorio.getNombre()){
-	Asignatura a1 = new Asignatura("Laboratorio " + materia)
+	CodigoP4_Chris.Asignatura a1 = new CodigoP4_Chris.Asignatura("Laboratorio " + materia)
 }
 
 -get:para todos los atributos
