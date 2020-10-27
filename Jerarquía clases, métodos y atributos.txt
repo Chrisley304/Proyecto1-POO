@@ -1,5 +1,12 @@
 JERARQUÍA CLASES, MÉTODOS Y ATRIBUTOS
 
+Como implemetar los objetos:
+    - Alumnos -> Hash (no.cuenta) <-- Bere
+    - Asignaturas -> Lista (indice) <-- Todos xd
+    - Grupos -> Hash (clave materia) -> Lista ( numero de grupo)    <- Christian
+    - Profesores -> Conjuntos (HashSet)   <-- Fer
+
+
 Clases:
 	- Alumno
 	- Profesor
@@ -53,13 +60,13 @@ Métodos:
 
 Clase Grupos:
 Atributos:
--Horarios(HORAS,clasificar por asignatura)
--Salón
--Profesor Lista de profesores;
--Número de grupo
--Asignatura asignatura;
--Días
--No.Grupo(static):no puede estar inscrito un alumno en más de 3 grupos
+    -Horarios(HORAS,clasificar por asignatura)
+    -Salón
+    -Profesor Lista de profesores;
+    -Número de grupo
+    -Asignatura asignatura;
+    -Días
+    -No.Grupo (static):no puede estar inscrito un alumno en más de 3 grupos
 
 Métodos:
 -Mostrar grupos(clave única, asignatura,profesor,horario,salon)
@@ -74,13 +81,13 @@ Atributos:
 -Créditos
 -Boolean Laboratorio->True
 -Divisiones:
-1.División de Ciencias Básicas.
-2.División de Ingenierías Civil y Geomática.
-3.División de Ingeniería Eléctrica.
-4.División de Ingeniería en Ciencias de la Tierra.
-5.División de Ingeniería Mecánica e Industrial.
-6.División de Ciencias Sociales y Humanidades.
-7.División de Educación Continua y a Distancia.
+    1.División de Ciencias Básicas.
+    2.División de Ingenierías Civil y Geomática.
+    3.División de Ingeniería Eléctrica.
+    4.División de Ingeniería en Ciencias de la Tierra.
+    5.División de Ingeniería Mecánica e Industrial.
+    6.División de Ciencias Sociales y Humanidades.
+    7.División de Educación Continua y a Distancia.
 -Tipo:String T(teroría)/String L(laboratorio normal)
 
 
