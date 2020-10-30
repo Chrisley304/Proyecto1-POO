@@ -1,10 +1,6 @@
 package Clases_Inscripciones;
 
-import CodigoP4_Chris.Asignatura;
-import CodigoP4_Chris.Profesor;
-
 import java.util.ArrayList;
-import java.util.Hashtable;
 
 public class Grupo {
     int numGrupo;   //No puede ser estatica, porque habra grupos de diferentes materias
@@ -12,7 +8,7 @@ public class Grupo {
     ArrayList<String> dias;
     String salon;
     Profesor profe;
-    Asignatura materia;
+    public Asignatura materia;
 
     public Grupo(int numGrupo, String horas, ArrayList<String> dias, String salon, Profesor profe, Asignatura materia){
         this.numGrupo = numGrupo;
@@ -21,6 +17,22 @@ public class Grupo {
         this.salon = salon;
         this.profe = profe;
         this.materia = materia;
+    }
+
+    private void MostrarHorario(){
+        System.out.println("Horas: " + horas);
+        System.out.println("Dias:");
+        dias.forEach((d) -> System.out.printf("%s\t",d));
+    }
+
+    public void MostrarGrupo(){
+//        System.out.printf("Materia %s:\n",materia.nombre);
+        // No se imprime la informacion de la materia porque eso se hace solo una vez por materia en el main -C
+        System.out.println("Grupo " + numGrupo);
+        MostrarHorario();
+        System.out.println("Salon: " + salon);
+        System.out.println("Profesor:");
+        System.out.print("\t");profe.MostrarProfesor();
     }
 
 }

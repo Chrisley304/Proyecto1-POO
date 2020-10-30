@@ -1,20 +1,17 @@
 package Clases_Inscripciones;
 
-import java.util.HashSet;
-
-
 public class Profesor{
 	String nombre;
 	String apellido;
 	String titulo;
-	static int numMaestros;
-	static HashSet<Profesor> conjuntoProfesores = new HashSet<>();
+	static public int numMaestros;
 
 
-	public Profesor(String nombre, String apellido){
+	public Profesor(String nombre, String apellido,String titulo){
 		numMaestros ++;
 		this.nombre = nombre;
 		this.apellido = apellido;
+		this.titulo = titulo;
 	}
 
 
@@ -34,20 +31,19 @@ public class Profesor{
 		return this.apellido;
 	}
 
-
-	public static void registrarProfesores(Profesor profe){
-		
-	    conjuntoProfesores.add(profe);
-	}
-
-	public static void mostrarProfesores(){
+/*	public static void mostrarProfesores(){
 		int j = 1;
 		//HashSet<Profesor> conjuntoProfesores = new HashSet<Profesor>();
 		for(Profesor i : conjuntoProfesores){
-
 			System.out.println("Profesor " + j + ": " + i.getTitulo()+ " " + i.getNombre() + " " + i.getApellido());
 			j++;
 		}
+	}*/
+
+	public void MostrarProfesor(){
+		System.out.printf("Nombre del Profesor: %s\n",nombre);
+		System.out.printf("Apellido del Profesor: %s\n",apellido);
+		System.out.printf("Titulo: %s\n",titulo);
 	}
 
 

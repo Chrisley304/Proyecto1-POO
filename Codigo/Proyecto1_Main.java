@@ -8,11 +8,11 @@ public class Proyecto1_Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int opcion;//,numAl=0,numAs=0,numProf=0,numGrupos=0;
-        int n=0;
+//        int n=0;  <-- Esta variable nunca se ocupa xd -C
         
-//        List<Alumno> listaAlumnos = new List<Alumno>;
-//        List<Asignatura> listaMaterias = new List<Asignatura>;
-//        List<Profesor> listaProfesores = new List<Profesor>;
+        ArrayList<Alumno> alumnos_registrados = new ArrayList<>();
+        ArrayList<Asignatura> listaMaterias = new ArrayList<>();
+        HashSet<Profesor> LisProfesores = new HashSet<>();
         Hashtable <Integer, ArrayList<Grupo>> grupos = new Hashtable<>();
         
         System.out.println("**********  Proyecto 1: Sistema de Inscripciones  **********");
@@ -22,66 +22,64 @@ public class Proyecto1_Main {
             sc.nextLine();
             switch(opcion){
                 
-//                case 1:{
-//                    String nombre,apellido,semestre,correo;
-//                    int edad,numCuenta;
-//                    numAl+=1;
-//                    System.out.println("Ingrese los datos del alumno: ");
-//                    System.out.println("Nombre: ");
-//                    nombre = sc.nextLine();
-//                    System.out.println("Apellido: ");
-//                    apellido = sc.nextLine();
-//                    System.out.println("Edad: ");
-//                    edad = sc.nextInt();
-//                    System.out.print("Numero de cuenta: ");
-//                    numCuenta = sc.nextInt();
-//                    System.out.print("Semestre: ");
-//                    semestre = sc.nextLine();
-//                    System.out.print("Correo electronico: ");
-//                    correo = sc.nextLine();
-//                    Alumno alumnos[numAl] = new Alumno(nombre, apellido, edad, numCuenta, semestre, correo);
-//                    listaAlumnos.add(alumnos[numAl]);
-//                }
+                case 1:{
+                    String nombre,apellido,semestre,correo;
+                    int edad,numCuenta;
+                    System.out.println("Ingrese los datos del alumno: ");
+                    System.out.println("Nombre: ");
+                    nombre = sc.nextLine();
+                    System.out.println("Apellido: ");
+                    apellido = sc.nextLine();
+                    System.out.println("Edad: ");
+                    edad = sc.nextInt();
+                    System.out.println("Numero de cuenta: ");
+                    numCuenta = sc.nextInt();
+                    System.out.println("Semestre: ");
+                    semestre = sc.nextLine();
+                    System.out.println("Correo electronico: ");
+                    correo = sc.nextLine();
+                    alumnos_registrados.add(numCuenta, new Alumno(nombre, apellido, edad, numCuenta, semestre, correo));
+                }
                 
-//                case 2:{
-//                    String nombre,division;
-//                    boolean laboratorio;
-//                    int clave,creditos;
-//                    numAs+=1;
-//                    System.out.println("Ingrese la información de la materia: ");
-//                    System.out.println("Nombre: ");
-//                    nombre = sc.nextLine();
-//                    System.out.println("Clave: ");
-//                    clave = sc.nextInt();
-//                    System.out.println("Creditos: ");
-//                    creditos= sc.nextInt();
-//                    System.out.print("Division: ");
-//                    division = sc.nextLine();
-//                    System.out.print("La materia tiene Laboratorio(L+)? (True/False)");
-//                    laboratorio = sc.nextBoolean();
-//                    Asignatura asignaturas[numAs] = new Asignatura(nombre, clave, creditos, division, laboratorio);
-//                    listaMaterias.add(asignaturas[numAs]);
-//                }
+                case 2:{
+                    String nombre,division;
+                    boolean laboratorio;
+                    int clave,creditos;
+//                    numAs+=1;         No se porque esta esta variable -C
+                    System.out.println("Ingrese la información de la materia: ");
+                    System.out.println("Nombre: ");
+                    nombre = sc.nextLine();
+                    System.out.println("Clave: ");
+                    clave = sc.nextInt();
+                    System.out.println("Creditos: ");
+                    creditos= sc.nextInt();
+                    System.out.print("Division: ");
+                    division = sc.nextLine();
+                    System.out.print("La materia tiene Laboratorio(L+)? (si/no)");
+                    String siono = sc.nextLine();
+                    laboratorio = siono.equals("si");   //Al equals ser un método que devuelve un boolean, si ves verdadera, la variable sera true y viceversa
+//                    Asignatura[numAs] asignaturas = new Asignatura(nombre, clave, créditos, division, laboratorio);
+                    listaMaterias.add(new Asignatura(nombre, clave, creditos, division, laboratorio));
+                }
+
+                case 3:{
+                    String nombre,apellido,titulo;
+                    System.out.println("Ingrese la información del profesor: ");
+                    System.out.println("Nombre: ");
+                    nombre = sc.nextLine();
+                    System.out.println("Apellido: ");
+                    apellido = sc.nextLine();
+                    System.out.println("Grado academico: ");
+                    titulo = sc.nextLine();
+
+                    Profesor prof = new Profesor(nombre,apellido,titulo);
+                    LisProfesores.add(prof);
+                }
                 
-//                case 3:{
-//                    String nombre,apellido,titulo;
-//                    int clave,creditos;
-//                    numProf+=1;
-//                    System.out.println("Ingrese la información del profesor: ");
-//                    System.out.println("Nombre: ");
-//                    nombre = sc.nextLine();
-//                    System.out.println("Apellido: ");
-//                    apellido = sc.nextLine();
-//                    System.out.println("Titulo: ");
-//                    titulo = sc.nextLine();
-//                    Profesor profesores[numProf] = new Profesor(nombre, apellido, titulo);
-//                    listaProfesores.add(profesores[numProf]);
-//                }
-                
-                case 4: {
+                case 4: {   // FALTA incluir la forma de elegir el profesor para la materia
                     System.out.println("Ingresa la clave de la materia, de la cual se abrira el grupo: ");
                     int clave = sc.nextInt();
-                    if (MetododevalidarMateria(clave)){ // Si existe la materia devuelve true
+                    if (Asignatura.existeAsignatura(clave,listaMaterias)){ // Si existe la materia devuelve true
                         if (!grupos.containsKey(clave)){        // Hash = { 1890: {}, 65655: { 1: 2 2 6 6 }  5526: {}  }
                             ArrayList<Grupo> nuevogrup = new ArrayList<>();
                             grupos.put(clave, nuevogrup);
@@ -89,12 +87,13 @@ public class Proyecto1_Main {
                         ArrayList<Grupo> lista = grupos.get(clave);
                         String horas, salon;
                         int numDeGrupo;
-                        numDeGrupo = temp.size() + 1;
+                        numDeGrupo = lista.size() + 1;
                         System.out.println("Ingrese la información para abrir un grupo: ");
                         horas = Horario();
                         ArrayList<String> dias = Dias();
                         System.out.println("Salon: ");
                         salon = sc.nextLine();
+                        Asignatura materia = listaMaterias.get(clave);
                         /*Mostrar lista de profesores
                           Asignar profesor
 
@@ -113,18 +112,46 @@ public class Proyecto1_Main {
                     //    Pedir número de cuenta y clave de grupo
                 }
                 case 6:{
-                    //Mostrar lista de alumnos regitrados
-                    //Mostrar lista de alumnos inscritos
-                    //Mostrar lista de asignaturas
-                    //Mostrar lista de profesores
-                    //Mostrar lista de grupos
-                }
+                    System.out.println("\t1) Mostrar lista de alumnos regitrados\n\t2) Mostrar lista de asignaturas\n\t3) Mostrar lista de profesores\n\t4) Mostrar lista de grupos");
+                    int subop = sc.nextInt();
+                    switch (subop){
+
+                        case 1: {//Mostrar lista de alumnos registrados
+                            //for (int i = 0; i<)
+                        }break;
+
+                        //Mostrar lista de alumnos inscritos
+
+                        case 2: {//Mostrar lista de asignaturas
+                        }break;
+
+                        case 3: {//Mostrar lista de profesores
+                            int j =1;
+                            for (Profesor i : LisProfesores) {
+                                System.out.printf("Profesor %d:",j);
+                                i.MostrarProfesor();
+                                j++;
+                            }
+                        }break;
+                        case 4:{//Mostrar lista de grupos
+                            // get keys() from Hashtable and iterate
+                            Enumeration<Integer> llaves = grupos.keys();
+                            while(llaves.hasMoreElements()) {
+                                Integer key = llaves.nextElement();
+                                ArrayList<Grupo> temp = grupos.get(key);    // Obtiene la lista de grupos por materia
+                                Grupo materia = temp.get(0);
+                                materia.materia.mostrarAsignatura(); // Muestra la información de la materia de los grupos a mostrar
+                                for (Grupo k: temp) { // Muestra la información de la lista anterior por grupo
+                                    k.MostrarGrupo();
+                                }
+                            }
+                        }
+                    }
             }
-        }while (opcion != 7);
+        }
+
+    }while(opcion != 7);
         sc.close();
-    }
-
-
     } // Fin del Main
 
     static public String Horario(){
