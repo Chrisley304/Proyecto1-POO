@@ -1,3 +1,5 @@
+package CodigoP4_Chris;
+
 import java.util.Scanner;
 
 public class Inscripciones{
@@ -10,7 +12,7 @@ public class Inscripciones{
 
         System.out.println("Bienvienido a las inscripciones 2020-1!\nPor favor elija una opcion:");
         do{
-            System.out.println("1)Registar Alumno(Incluye domicilio)\n2)Registrar Asignatura(Incluye Profesor)\n3)Mostrar Alumnos\n4)Mostrar Asignaturas\n5)Salir");
+            System.out.println("1)Registar CodigoP4_Chris.Alumno(Incluye domicilio)\n2)Registrar CodigoP4_Chris.Asignatura(Incluye CodigoP4_Chris.Profesor)\n3)Mostrar Alumnos\n4)Mostrar Asignaturas\n5)Salir");
             opcion = sc.nextInt();
             sc.nextLine();
             switch(opcion){
@@ -87,7 +89,7 @@ public class Inscripciones{
                     if (Alumno.numAlu > 0){
                         System.out.printf("Hay %d alumnos registrados c/u con su profesor asignado\n", Alumno.numAlu);
                         for (int i =0; i<Alumno.numAlu;i++){
-                            System.out.println("Alumno " + (i+1) + ":");
+                            System.out.println("CodigoP4_Chris.Alumno " + (i+1) + ":");
                             alumnos[i].MostrarAlumno();
                             System.out.println();
                         }

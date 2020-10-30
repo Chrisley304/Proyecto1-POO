@@ -1,3 +1,5 @@
+package CodigoP4_Chris;
+
 public class Profesor {
     static int numProf;
 

@@ -1,4 +1,4 @@
-
+package CodigoP4_Chris;
 
 public class Alumno {
     static int numAlu; 
