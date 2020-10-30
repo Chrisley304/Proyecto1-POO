@@ -18,7 +18,7 @@ public class Alumno {
         this.correo = correo;
     }
 
-    Grupo AsignarGrupo(Grupo grupo){
+    public void AsignarGrupo(Grupo grupo){
         if(numGrupos != 3){
             listaGrupos[numGrupos] = grupo;
         }else{

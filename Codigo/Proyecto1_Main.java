@@ -109,6 +109,7 @@ public class Proyecto1_Main {
                 case 5:{
                     //Inscribir alumnos
                     //    Mostrar grupos
+                    // Aquí utilizar el método Asociar grupo que esta dentro de la clase Alumno para el alumno que se vaya a inscribir
                     //    Pedir número de cuenta y clave de grupo
                 }
                 case 6:{
