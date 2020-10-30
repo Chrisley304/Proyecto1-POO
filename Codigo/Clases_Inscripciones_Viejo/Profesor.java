@@ -1,4 +1,4 @@
-package Clases_Inscripciones;
+package Clases_Inscripciones_Viejo;
 
 public class Profesor{
 	String nombre;
@@ -41,9 +41,9 @@ public class Profesor{
 	}*/
 
 	public void MostrarProfesor(){
-		System.out.printf("Nombre del Profesor: %s\n",this.nombre);
-		System.out.printf("Apellido del Profesor: %s\n",this.apellido);
-		System.out.printf("Titulo: %s\n",this.titulo);
+		System.out.printf("Nombre del Profesor: %s\n",nombre);
+		System.out.printf("Apellido del Profesor: %s\n",apellido);
+		System.out.printf("Titulo: %s\n",titulo);
 	}
 
 

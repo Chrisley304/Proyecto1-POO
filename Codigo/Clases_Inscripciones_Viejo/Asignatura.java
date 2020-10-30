@@ -1,6 +1,5 @@
-package Clases_Inscripciones;
+package Clases_Inscripciones_Viejo;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -29,15 +28,6 @@ public class Asignatura{
         //this.tipo = tipo;
         no_grupos = 0; // Es 0, porque al momento de crear la materia, es imposible que ya existan grupos -C
     }
-
-    public Asignatura(String nombreLab,int  claveLab, int creditos,String division){
-    	this.nombre = nombreLab;
-        this.clave = claveLab;
-        this.creditos = creditos;
-        this.division = division;
-
-    }
-
 
     public void setNo_grupos(int no_grupos){ this.no_grupos = no_grupos;} // Set necesesario para una vez creados los grupos darle valor a la variable, (ej. aumentando en 1 en el main y pasandola como parametro en el set) -C
 
@@ -83,7 +73,7 @@ public class Asignatura{
 
 
     //USO EXCLUSIVO DE INSCRIPCIÓN
-    public static boolean existeAsignatura(int clave, ArrayList<Asignatura> materias ){
+    public static boolean existeAsignatura(int clave, List<Asignatura> materias ){
         HashMap<Integer, String> asignaturas = new HashMap<>();
 
         /*asignaturas.put(1, "Fisica");

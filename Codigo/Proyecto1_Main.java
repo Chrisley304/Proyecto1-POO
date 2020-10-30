@@ -9,9 +9,14 @@ public class Proyecto1_Main {
         Scanner sc = new Scanner(System.in);
         int opcion;//,numAl=0,numAs=0,numProf=0,numGrupos=0;
 //        int n=0;  <-- Esta variable nunca se ocupa xd -C
-        
-        ArrayList<Alumno> alumnos_registrados = new ArrayList<>();
+
+        //Bere->HashMap
+        //Fer->HashSet
+        Map<Integer, Alumno> alumnos_registrados = new HashMap<Integer, Alumno>();
         ArrayList<Asignatura> listaMaterias = new ArrayList<>();
+
+       // ArrayList<Alumno> alumnos_registrados = new ArrayList<>();
+        //ArrayList<Asignatura> listaMaterias = new ArrayList<>();
         HashSet<Profesor> LisProfesores = new HashSet<>();
         Hashtable <Integer, ArrayList<Grupo>> grupos = new Hashtable<>();
         
@@ -35,17 +40,19 @@ public class Proyecto1_Main {
                     System.out.println("Numero de cuenta: ");
                     numCuenta = sc.nextInt();
                     System.out.println("Semestre: ");
+                    sc.nextLine();
                     semestre = sc.nextLine();
                     System.out.println("Correo electronico: ");
                     correo = sc.nextLine();
-                    alumnos_registrados.add(numCuenta, new Alumno(nombre, apellido, edad, numCuenta, semestre, correo));
+                    alumnos_registrados.put(numCuenta, new Alumno(nombre, apellido, edad, semestre, correo));
+                    break;
                 }
                 
                 case 2:{
                     String nombre,division;
                     boolean laboratorio;
                     int clave,creditos;
-//                    numAs+=1;         No se porque esta esta variable -C
+
                     System.out.println("Ingrese la información de la materia: ");
                     System.out.println("Nombre: ");
                     nombre = sc.nextLine();
@@ -54,14 +61,28 @@ public class Proyecto1_Main {
                     System.out.println("Creditos: ");
                     creditos= sc.nextInt();
                     System.out.print("Division: ");
+                    nombre = sc.nextLine();
                     division = sc.nextLine();
                     System.out.print("La materia tiene Laboratorio(L+)? (si/no)");
                     String siono = sc.nextLine();
-                    laboratorio = siono.equals("si");   //Al equals ser un método que devuelve un boolean, si ves verdadera, la variable sera true y viceversa
-//                    Asignatura[numAs] asignaturas = new Asignatura(nombre, clave, créditos, division, laboratorio);
-                    listaMaterias.add(new Asignatura(nombre, clave, creditos, division, laboratorio));
-                }
+                    siono.toLowerCase();
+                    laboratorio = siono.equals("si");
 
+                    Asignatura asig = new Asignatura(nombre, clave, creditos, division, laboratorio);
+                    listaMaterias.add(asig);
+
+                    if(laboratorio){
+                        int claveLab;
+                        String nombreLab;
+                        //Se le suma 5000 porque asi es la inscripcion en la facultad
+                        claveLab = clave + 5000;
+                        nombreLab = "Laboratorio de " + nombre;
+                        Asignatura asigLab = new Asignatura(nombreLab, claveLab, creditos, division);
+                        listaMaterias.add(asigLab);
+                    }
+                    break;
+                }
+ 
                 case 3:{
                     String nombre,apellido,titulo;
                     System.out.println("Ingrese la información del profesor: ");
@@ -74,16 +95,18 @@ public class Proyecto1_Main {
 
                     Profesor prof = new Profesor(nombre,apellido,titulo);
                     LisProfesores.add(prof);
+                    break;
                 }
                 
                 case 4: {   // FALTA incluir la forma de elegir el profesor para la materia
                     System.out.println("Ingresa la clave de la materia, de la cual se abrira el grupo: ");
                     int clave = sc.nextInt();
                     if (Asignatura.existeAsignatura(clave,listaMaterias)){ // Si existe la materia devuelve true
-                        if (!grupos.containsKey(clave)){        // Hash = { 1890: {}, 65655: { 1: 2 2 6 6 }  5526: {}  }
+                        if (!grupos.containsKey(clave)){        // Hash = { 1890: {}, 65655: { 1: 2 2 6 6 }  5526: {} , 900:{3,6, 7}}
                             ArrayList<Grupo> nuevogrup = new ArrayList<>();
                             grupos.put(clave, nuevogrup);
                         }
+
                         ArrayList<Grupo> lista = grupos.get(clave);
                         String horas, salon;
                         int numDeGrupo;
@@ -100,44 +123,64 @@ public class Proyecto1_Main {
                           Mostrar lista de Asignaturas
                           Asignar Asignatura
                          */            //El profesor y la materia provienen de la lista de esas clases
-                        lista.add(new Grupo(numDeGrupo, horas, dias, salon, profe, materia));
+                  /*      lista.add(new Grupo(numDeGrupo, horas, dias, salon, profe, materia));
                         grupos.replace(clave, lista); //Se reemplaza la lista con menos datos con la nueva con mas datos
                     }else{
                         System.out.println("La materia ingresada no existe :(");
-                    }
+                    }*/
+                    break;
                 }
+            }
+                /*
                 case 5:{
                     //Inscribir alumnos
                     //    Mostrar grupos
                     // Aquí utilizar el método Asociar grupo que esta dentro de la clase Alumno para el alumno que se vaya a inscribir
                     //    Pedir número de cuenta y clave de grupo
-                }
-                case 6:{
+                    /*
+                    H = {numCuenta,Alumno alu}
+                    if(H.containsKey(numCuenta)) //SI EXISTE EL ALUMNO{
+                       
+                        //grupos maximo 3
+                        int arreglo[][] = [3][clave]                        
+                        ""
+                    }*/
+              /*     break;
+                }*/
+                case 6: {
                     System.out.println("\t1) Mostrar lista de alumnos regitrados\n\t2) Mostrar lista de asignaturas\n\t3) Mostrar lista de profesores\n\t4) Mostrar lista de grupos");
                     int subop = sc.nextInt();
-                    switch (subop){
+                    switch (subop) {
 
                         case 1: {//Mostrar lista de alumnos registrados
+                            for (Object i : alumnos_registrados.keySet()) {
+                                //System.out.println(i);
+                                System.out.println("\nNo.Cuenta: " + i);
+                                alumnos_registrados.get(i).mostrarAlumno();
+                            }
                             //for (int i = 0; i<)
-                        }break;
+                        }
+                        break;
 
                         //Mostrar lista de alumnos inscritos
 
-                        case 2: {//Mostrar lista de asignaturas
-                        }break;
+                     /*   case 2: {//Mostrar lista de asignaturas
+                        }break;}*/
 
                         case 3: {//Mostrar lista de profesores
-                            int j =1;
+                            int j = 1;
                             for (Profesor i : LisProfesores) {
-                                System.out.printf("Profesor %d:",j);
+                                System.out.printf("Profesor %d:", j);
                                 i.MostrarProfesor();
                                 j++;
                             }
-                        }break;
+                            break;
+                        }
+                        /*
                         case 4:{//Mostrar lista de grupos
                             // get keys() from Hashtable and iterate
                             Enumeration<Integer> llaves = grupos.keys();
-                            while(llaves.hasMoreElements()) {
+                            while(llaves.hasMoreElements()) { //mientras no este vacio
                                 Integer key = llaves.nextElement();
                                 ArrayList<Grupo> temp = grupos.get(key);    // Obtiene la lista de grupos por materia
                                 Grupo materia = temp.get(0);
@@ -147,8 +190,10 @@ public class Proyecto1_Main {
                                 }
                             }
                         }
+                    }*/
                     }
-            }
+
+                }break;
         }
 
     }while(opcion != 7);
