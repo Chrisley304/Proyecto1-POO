@@ -1,15 +1,13 @@
 
 import java.util.Scanner;
 import Clases_Inscripciones.*;
-import CodigoP4_Chris.Asignatura;
-import CodigoP4_Chris.Profesor;
 
 import java.util.*;
 
 public class Proyecto1_Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int opcion,numAl=0,numAs=0,numProf=0,numGrupos=0;
+        int opcion;//,numAl=0,numAs=0,numProf=0,numGrupos=0;
         int n=0;
         
 //        List<Alumno> listaAlumnos = new List<Alumno>;
@@ -82,20 +80,19 @@ public class Proyecto1_Main {
                 
                 case 4: {
                     System.out.println("Ingresa la clave de la materia, de la cual se abrira el grupo: ");
-                    int clave = sc.nextLine();
+                    int clave = sc.nextInt();
                     if (MetododevalidarMateria(clave)){ // Si existe la materia devuelve true
-                        if (!grupos.containsKey(clave)){
+                        if (!grupos.containsKey(clave)){        // Hash = { 1890: {}, 65655: { 1: 2 2 6 6 }  5526: {}  }
                             ArrayList<Grupo> nuevogrup = new ArrayList<>();
                             grupos.put(clave, nuevogrup);
                         }
                         ArrayList<Grupo> lista = grupos.get(clave);
-                        String horas, salon, dias;
+                        String horas, salon;
                         int numDeGrupo;
                         numDeGrupo = temp.size() + 1;
                         System.out.println("Ingrese la información para abrir un grupo: ");
                         horas = Horario();
-                        System.out.println("Dias: ");
-                        dias = sc.nextLine();
+                        ArrayList<String> dias = Dias();
                         System.out.println("Salon: ");
                         salon = sc.nextLine();
                         /*Mostrar lista de profesores
@@ -127,9 +124,13 @@ public class Proyecto1_Main {
         sc.close();
     }
 
-    static String Horario(){
+
+    } // Fin del Main
+
+    static public String Horario(){
+        Scanner sc = new Scanner(System.in);
         int opcion;
-        String horas = new String();
+        String horas = "";
         while (horas.isEmpty()){
             System.out.println("Por favor seleccione uno de los siguientes horarios:\n1) 7:00-9:00\n2) 9:00-11:00\n3) 11:00-13:00\n4) 13:00-15:00\n5) 15:00-17:00\n6) 17:00-19:00\n7) 19:00-21:00\n8) 21:00-23:00\n");
             opcion = sc.nextInt();
@@ -171,7 +172,52 @@ public class Proyecto1_Main {
                 }break;
             }
         }
+        sc.close();
         return horas;
     }
-}
+
+    static public ArrayList<String> Dias(){
+        Scanner sc = new Scanner(System.in);
+        int opcion, num;
+        ArrayList<String> dias = new ArrayList<>();
+        System.out.print("Ingrese el numero de dias que se lleva la materia a la semana:  ");
+        num = sc.nextInt();
+        while (dias.size() != num){
+            System.out.printf("Seleccione el dia %d: \n\t1) Lunes\n\t2) Martes\n\t3) Miercoles\n\t4) Jueves\n\t5) Viernes\n\t6) Sabado\n\t",dias.size()+1);
+            opcion = sc.nextInt();
+            switch (opcion){
+                case 1:{
+                    dias.add("Lunes");
+                }break;
+
+                case 2:{
+                    dias.add("Martes");
+                }break;
+
+                case 3:{
+                    dias.add("Miercoles");
+                }break;
+
+                case 4:{
+                    dias.add("Jueves");
+                }break;
+
+                case 5:{
+                    dias.add("Viernes");
+                }break;
+
+                case 6:{
+                    dias.add("Sabado");
+                }break;
+
+                default:{
+                    System.out.println("Por favor elige una opcion correcta");
+                }break;
+            }
+        }
+        sc.close();
+        return dias;
+    }
+
+}   //Fin de la Clase
 
