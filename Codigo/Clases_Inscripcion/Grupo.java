@@ -1,4 +1,4 @@
-package Clases_Inscripciones;
+package Clases_Inscripcion;
 
 import java.util.ArrayList;
 
@@ -24,6 +24,11 @@ public class Grupo {
         return this.numGrupo;
     }
 
+
+    public Asignatura getAsignatura (){
+        return this.materia;
+    }
+
     private void MostrarHorario(){
         System.out.println("\tHoras: " + horas);
         System.out.println("\tDias:");
@@ -33,6 +38,7 @@ public class Grupo {
     public void MostrarGrupo(){
 //        System.out.printf("Materia %s:\n",materia.nombre);
         // No se imprime la informacion de la materia porque eso se hace solo una vez por materia en el main -C
+        System.out.println("Nombre: " + materia.getNombre());
         System.out.println("\tGrupo " + numGrupo);
         MostrarHorario();
         System.out.println("\tSalon: " + salon);

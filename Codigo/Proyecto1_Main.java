@@ -1,5 +1,5 @@
 import java.util.Scanner;
-import Clases_Inscripciones.*;
+import Clases_Inscripcion.*;
 
 import java.util.*;
 
@@ -111,7 +111,10 @@ public class Proyecto1_Main {
                             System.out.println("Salon: ");
                             sc.nextLine();
                             salon = sc.nextLine();
-                            Asignatura materia = listaMaterias.get(numDeGrupo-1); // <--
+                           
+
+
+                            //Asignatura materia = listaMaterias.get(numDeGrupo-1); // <--
                             int k = 0;
                             for (Profesor i : LisProfesores){ // Mostrar profesores disponible
                                 k++;
@@ -132,9 +135,22 @@ public class Proyecto1_Main {
                                 }
                                 k++;
                             }
-                            lista.add(new Grupo(numDeGrupo, horas, dias, salon, profe, materia));
-                            int indice = listaMaterias.indexOf(materia);
-                            listaMaterias.get(indice).no_grupos++;
+
+
+
+
+                            /*
+                            for(Asignatura n : listaMaterias){
+                            	if(n.getClave() == clave){
+                            		return n;
+                            	}	
+                            }*/
+
+                            //OBJETO ASIGNATURA QUE CORRESPONDA A LA CLAVE DEL USUARIO
+                            lista.add(new Grupo(numDeGrupo, horas, dias, salon, profe, Asignatura.obtenerMateria(clave,listaMaterias))); //ES ESTE EL PROBLEMA PARA ESCOGER LA MATERIA EN listaMaterias
+                            //int indice = listaMaterias.indexOf(materia);
+                            //listaMaterias.get(indice).no_grupos++;
+                            Asignatura.obtenerMateria(clave,listaMaterias ).setNo_grupos(numDeGrupo);
                             grupos.replace(clave, lista); //Se reemplaza la lista con menos datos con la nueva con mas datos
                         } else {
                             System.out.println("La materia ingresada no existe :(");
@@ -227,17 +243,17 @@ public class Proyecto1_Main {
 
                         
                         case 4:{//Mostrar lista de grupos
-                            // get keys() from Hashtable and iterate
-                            Enumeration<Integer> llaves = grupos.keys();
-                            while(llaves.hasMoreElements()) { //mientras no este vació
-                                Integer key = llaves.nextElement();
-                                ArrayList<Grupo> temp = grupos.get(key);    // Obtiene la lista de grupos por materia
-                                Grupo materia = temp.get(0);
-                                materia.materia.mostrarAsignatura(); // Muestra la información de la materia de los grupos a mostrar
-                                for (Grupo k: temp) { // Muestra la información de la lista anterior por grupo
-                                    k.MostrarGrupo();
-                                }
-                            }
+                        	Enumeration<Integer> llaves = grupos.keys();
+                        	while (llaves.hasMoreElements()) {
+					            Integer key = llaves.nextElement();
+
+					            System.out.println(key);
+
+					            for(Grupo k : grupos.get(key)){
+					            	k.MostrarGrupo();
+					            }
+
+					        }
                         }
                     }
 

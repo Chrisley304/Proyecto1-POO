@@ -1,4 +1,4 @@
-package Clases_Inscripciones;
+package Clases_Inscripcion;
 
 import java.util.*;
 
@@ -12,6 +12,10 @@ public class Asignatura{
     String[] divisiones;
     char tipo; //teoría o laboratorio normal
     String division;
+
+    public Asignatura(){
+
+    }
 
     //Constructor
     public Asignatura(String nombre, int clave, int creditos,String division,char tipo, boolean lab){ // No entendi como funcionaba el tipo -C
@@ -51,6 +55,33 @@ public class Asignatura{
         return this.tipo;
     }
 
+    public void setDivision(String division){
+        this.division = division;
+    }
+
+    public void setNombre(String nombre){
+        this.nombre = nombre;
+    }
+
+    public void setClave(int clave){
+        this.clave = clave;
+    }
+
+    public void setNoGrupos(int no_grupos){
+        this.no_grupos = no_grupos;
+    }
+
+    public void setCreditos(int creditos){
+        this.creditos = creditos;
+    }
+
+    public void setTipo(char tipo){
+        this.tipo = tipo;
+    }
+
+
+
+
 	/*IDEA PARA DIVISIONES
     List<String> list = Arrays.asList(a);
   	System.out.println("The list is: " + list); */
@@ -69,10 +100,38 @@ public class Asignatura{
 
     //USO EXCLUSIVO DE INSCRIPCIÓN
     public static boolean existeAsignatura(int clave, ArrayList<Asignatura> materias ){
+
         for (Asignatura i : materias) {
             if(i.clave == clave)
                 return true;
         }
         return false;
+    }
+
+
+
+     public static Asignatura obtenerMateria(int clave, ArrayList<Asignatura> materias ){
+
+        //Asignatura a = new Asignatura();
+        int i = 0;
+        while(materias.get(i).getClave()!=clave){
+            i++;
+            //return materias.get(i)
+        }
+        return materias.get(i);
+/*
+        for(int i = 0;i<materias.size();i++){
+            if(materias.get(i).getClave() == clave){
+                a.setClave(materias.get(i).getClave());
+                a.setTipo(materias.get(i).getTipo());
+                a.setCreditos(materias.get(i).getCreditos());
+                a.setNombre(materias.get(i).getNombre());
+                a.setNoGrupos(materias.get(i).getNoGrupos());
+                a.setDivision(materias.get(i).getDivision());  
+                break; 
+            }
+            
+        }
+        return a;*/
     }
 }
