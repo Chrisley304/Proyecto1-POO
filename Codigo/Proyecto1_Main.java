@@ -29,15 +29,27 @@ public class Proyecto1_Main {
                     nombre = sc.nextLine();
                     System.out.println("Apellido: ");
                     apellido = sc.nextLine();
-                    System.out.println("Edad: ");
+                    System.out.println("Edad: (0-100) ");
                     edad = sc.nextInt();
-                    System.out.println("Numero de cuenta: ");
+                    while (edad < 0 || edad>100){
+                        System.out.print("La edad, no es correcta, por favor intentelo de nuevo\n Edad: ");
+                        edad = sc.nextInt();
+                    }
+                    System.out.println("Numero de cuenta (9 digitos): ");
                     numCuenta = sc.nextInt();
+                    while (numCuenta != 9){
+                        System.out.print("El numero de cuenta, no es correcto, por favor intentelo de nuevo\n Num de cuenta: ");
+                        numCuenta = sc.nextInt();
+                    }
                     System.out.println("Semestre: ");
                     sc.nextLine();
                     semestre = sc.nextLine();
                     System.out.println("Correo electronico: ");
                     correo = sc.nextLine();
+                    while (correo.indexOf('@') == -1) {
+                        System.out.print("El correo, no es correcto, debe incluir '@' para ser correcto. Por favor intentelo de nuevo\n Correo: ");
+                        numCuenta = sc.nextInt();
+                    }
                     alumnos_registrados.put(numCuenta, new Alumno(nombre, apellido, edad, semestre, correo));
                     break;
                 }
@@ -50,13 +62,31 @@ public class Proyecto1_Main {
                     System.out.println("Ingrese la información de la materia: ");
                     System.out.println("Nombre: ");
                     nombre = sc.nextLine();
-                    System.out.println("Clave: ");
+                    System.out.println("Clave: (4 digitos)");
                     clave = sc.nextInt();
+                    while ( (String.valueOf(clave)).length() != 4) {
+                        System.out.print("La clave, no es correcta, esta debe ser de 4 digitos. Por favor intentelo de nuevo\n Clave: ");
+                        clave = sc.nextInt();
+                    }
                     System.out.println("Creditos: ");
                     creditos = sc.nextInt();
-                    System.out.print("Division: ");
-                    sc.nextLine();
-                    division = sc.nextLine();
+                    while (creditos < 0 || creditos > 20){
+                        System.out.print("Lo sentimos, los creditos no pueden ser negativos ni mayores a 20, Intentalo de nuevo\nCreditos: ");
+                        creditos = sc.nextInt();
+                    }
+                    System.out.print("Seleccione una division: ");
+                    String[] divisiones = new String[] { "División de Ciencias Básicas", "División de Ingenierías Civil y Geomática", "División de Ingeniería Eléctrica", "División de Ingeniería en Ciencias de la Tierra","División de Ingeniería Mecánica e Industrial","División de Ciencias Sociales y Humanidades","División de Educación Continua y a Distancia"};
+
+                    for (int i = 0; i < divisiones.length; i++) {
+                        System.out.printf("%d) %s",i+1,divisiones[i]);
+                    }
+                    System.out.print("Opcion: ");
+                    int d = sc.nextInt();
+                    while (d < 0 || d >=divisiones.length){
+                        System.out.print("Por favor elige una opcion correcta\nOpcion: ");
+                        d = sc.nextInt();
+                    }
+                    division = divisiones[d];
                     System.out.print("La materia tiene Laboratorio(L+)? (si/no) :  ");
                     String siono = sc.nextLine();
                     System.out.println();
@@ -133,8 +163,6 @@ public class Proyecto1_Main {
 
                             //OBJETO ASIGNATURA QUE CORRESPONDA A LA CLAVE DEL USUARIO
                             lista.add(new Grupo(numDeGrupo, horas, dias, salon, profe, Asignatura.obtenerMateria(clave,listaMaterias))); //ES ESTE EL PROBLEMA PARA ESCOGER LA MATERIA EN listaMaterias
-                            //int indice = listaMaterias.indexOf(materia);
-                            //listaMaterias.get(indice).no_grupos++;
                             Asignatura.obtenerMateria(clave,listaMaterias ).setNo_grupos(numDeGrupo);
                             grupos.replace(clave, lista); //Se reemplaza la lista con menos datos con la nueva con mas datos
                         } else {
@@ -173,6 +201,7 @@ public class Proyecto1_Main {
                                 System.out.print("Grupo a inscribir: ");
                                 int seleccion = sc.nextInt() - 1;
                                 alumnos_registrados.get(numCuenta).AsignarGrupo(gruposmateria.get(seleccion));
+                                grupos.get(claveAsig).get(seleccion).Addalumnos(String.valueOf(numCuenta));
                             }else{
                                 System.out.println("Lo sentimos, no hay grupos para la materia ingresada :(");
                             }
@@ -191,7 +220,6 @@ public class Proyecto1_Main {
                         case 1: {//Mostrar lista de alumnos registrados
                             if (!alumnos_registrados.isEmpty()){
                                 for (int i : alumnos_registrados.keySet()) {
-                                    // System.out.println(i);
                                     System.out.println("\nNo.Cuenta: " + i);
                                     alumnos_registrados.get(i).mostrarAlumno();
                                     System.out.println();
@@ -201,7 +229,6 @@ public class Proyecto1_Main {
                             }
                         }break;
 
-                        //Mostrar lista de alumnos inscritos
 
                         case 2: {//Mostrar lista de asignaturas
                             if (!listaMaterias.isEmpty()){

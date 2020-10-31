@@ -7,6 +7,7 @@ public class Grupo {
     //No puede ser estática, porque habrá grupos de diferentes materias
     String horas;
     ArrayList<String> dias;
+    ArrayList<String> alumnos = new ArrayList<>();
     String salon;
     Profesor profe;
     public Asignatura materia;
@@ -26,6 +27,10 @@ public class Grupo {
         dias.forEach((d) -> System.out.printf("\t%s",d));
     }
 
+    public void Addalumnos(String numCuenta){
+        alumnos.add(numCuenta);
+    }
+
     public void MostrarGrupo(){
         System.out.println("Nombre: " + materia.getNombre());
         System.out.println("\tGrupo " + numGrupo);
@@ -33,6 +38,7 @@ public class Grupo {
         System.out.println("\t| Salon: " + salon);
         System.out.println("\tProfesor:");
         profe.MostrarProfesor();
+        System.out.println("\tAlumnos inscritos " + alumnos.size() + " :" + alumnos.toString());
     }
 
 }
