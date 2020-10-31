@@ -1,8 +1,6 @@
 package Clases_Inscripciones;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class Asignatura{
     String nombre;
@@ -15,27 +13,15 @@ public class Asignatura{
     char tipo; //teoría o laboratorio normal
     String division;
 
-    //ASIGNATURAS CON CLAVE
-
-    //System.out.println(asignaturas);
-
     //Constructor
-    public Asignatura(String nombre, int clave, int creditos,String division,/*char tipo*/ boolean lab){ // No entendi como funcionaba el tipo -C
+    public Asignatura(String nombre, int clave, int creditos,String division,char tipo, boolean lab){ // No entendi como funcionaba el tipo -C
         this.nombre = nombre;
         this.clave = clave;
         this.creditos = creditos;
         this.division = division;
         this.lab = lab;
-        //this.tipo = tipo;
-        no_grupos = 0; // Es 0, porque al momento de crear la materia, es imposible que ya existan grupos -C
-    }
-
-    public Asignatura(String nombreLab,int  claveLab, int creditos,String division){
-    	this.nombre = nombreLab;
-        this.clave = claveLab;
-        this.creditos = creditos;
-        this.division = division;
-
+        this.tipo = tipo;
+        no_grupos = 0;
     }
 
 
@@ -66,7 +52,7 @@ public class Asignatura{
     }
 
 	/*IDEA PARA DIVISIONES
-     List<String> list = Arrays.asList(a);
+    List<String> list = Arrays.asList(a);
   	System.out.println("The list is: " + list); */
 
     public void mostrarAsignatura(){
@@ -74,10 +60,7 @@ public class Asignatura{
         System.out.println("CLAVE: " + this.clave);
         System.out.println("NÚMERO DE GRUPOS EXISTENTES: " + this.no_grupos);
         System.out.println("CRÉDITOS: " + this.creditos);
-        System.out.println("DIVISIÓN:: " + this.division);
-        //if(lab){
-        //	System.out.println("LABORATORIO DE : " + this.nombre + "(L+)");
-        //}
+        System.out.println("DIVISIÓN: " + this.division);
     }
 
 

@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 import Clases_Inscripciones.*;
 
@@ -9,12 +8,10 @@ public class Proyecto1_Main {
         Scanner sc = new Scanner(System.in);
         int opcion;//,numAl=0,numAs=0,numProf=0,numGrupos=0;
 //        int n=0;  <-- Esta variable nunca se ocupa xd -C
-
+        
+        // Declaracion de listas: 
         Map<Integer, Alumno> alumnos_registrados = new HashMap<>();
         ArrayList<Asignatura> listaMaterias = new ArrayList<>();
-
-       // ArrayList<Alumno> alumnos_registrados = new ArrayList<>();
-        //ArrayList<Asignatura> listaMaterias = new ArrayList<>();
         HashSet<Profesor> LisProfesores = new HashSet<>();
         Hashtable <Integer, ArrayList<Grupo>> grupos = new Hashtable<>();
         
@@ -66,20 +63,18 @@ public class Proyecto1_Main {
                     siono.toLowerCase();
                     laboratorio = siono.equals("si");
 
-                    Asignatura asig = new Asignatura(nombre, clave, creditos, division, laboratorio);
+                    Asignatura asig = new Asignatura(nombre, clave, creditos, division, 'T' ,laboratorio);
                     listaMaterias.add(asig);
-
                     if (laboratorio) {
                         int claveLab;
                         String nombreLab;
                         //Se le suma 5000 porque asi es la inscripción en la facultad
                         claveLab = clave + 5000;
                         nombreLab = "Laboratorio de " + nombre;
-                        Asignatura asigLab = new Asignatura(nombreLab, claveLab, creditos, division);
+                        Asignatura asigLab = new Asignatura(nombreLab, claveLab, creditos, division, 'L', laboratorio);
                         listaMaterias.add(asigLab);
                     }
-                    break;
-                }
+                }break;
 
                 case 3: {
                     String nombre, apellido, titulo;
@@ -96,7 +91,7 @@ public class Proyecto1_Main {
                     break;
                 }
 
-                case 4: {   // FALTA incluir la forma de elegir el profesor para la materia
+                case 4: {   // Registrar grupo
                     if (!LisProfesores.isEmpty()){ // Se verifica si hay profesores registrados, ya que no se pueden crear grupos sin profesores
                         System.out.println("Ingresa la clave de la materia, de la cual se abrira el grupo: ");
                         int clave = sc.nextInt();
@@ -122,7 +117,7 @@ public class Proyecto1_Main {
                                 System.out.println( k +") Profesor " + i.getNombre() + i.getApellido());
                             }
                             int opcionProf = sc.nextInt();
-                            if (opcionProf > k || opcionProf<1){
+                            while (opcionProf > k || opcionProf<1){
                                 System.out.println("La opcion ingresada es incorrecta, por favor ingrese una correcta:");
                                 opcionProf = sc.nextInt();
                             }
@@ -133,6 +128,7 @@ public class Proyecto1_Main {
                                     profe = i;
                                     break;
                                 }
+                                k++;
                             }
                             lista.add(new Grupo(numDeGrupo, horas, dias, salon, profe, materia));
                             grupos.replace(clave, lista); //Se reemplaza la lista con menos datos con la nueva con mas datos
@@ -144,20 +140,43 @@ public class Proyecto1_Main {
                     }
                 }break;
 
-                case 5:{        // Hacer este caso
+                case 5:{ // Inscribir alumnos
+                    if(Alumno.numeroAlumnos == 0){
+                        System.out.println("No existen alumnos registrados");
+                        break;
+                    }else{
+                        int k = 0;
+                        System.out.println("Ingresa numero de cuenta:");
+                        int numCuenta = sc.nextInt();
+                        
+                        if (alumnos_registrados.containsKey(numCuenta)){
+                            // imprimir claves de asignaturas
+                            System.out.println("Materias con claves registradas en el sistema:");
+                            
+                            for(Asignatura i : listaMaterias){
+                                System.out.println("Materia : " + i.getNombre() + " Clave: " + i.getClave());
+                            }
+                            
+                            System.out.println("Ingrese la clave de la Asignatura: ");
+                            int claveAsig = sc.nextInt();
 
+                            if (grupos.containsKey(claveAsig)){
+                                ArrayList<Grupo> gruposmateria = grupos.get(claveAsig);
+                                for (Grupo grupo : gruposmateria) {
+                                    grupo.MostrarGrupo();
+                                    System.out.println();
+                                }
+                                System.out.print("Grupo a inscribir: ");
+                                int seleccion = sc.nextInt() - 1;
+                                alumnos_registrados.get(numCuenta).AsignarGrupo(gruposmateria.get(seleccion));
+                            }else{
+                                System.out.println("Lo sentimos, no hay grupos para la materia ingresada :(");
+                            }
+                        } else{
+                            System.out.println("El alumno no fue encontrado, intentalo de nuevo.");
+                        }
+                    }
 
-                //Inscribir alumnos
-                //    Mostrar grupos
-                // Aquí utilizar el método Asociar grupo que esta dentro de la clase Alumno para el alumno que se vaya a inscribir
-                //    Pedir número de cuenta y clave de grupo
-
-                    /*H = {numCuenta,Alumno alu}
-                    if(H.containsKey(numCuenta)){ //SI EXISTE EL ALUMNO
-                       
-                        //grupos maximo 3
-                        int arreglo[][] = [3][clave]
-                    }*/
                 }break;
 
                 case 6: {
@@ -166,31 +185,44 @@ public class Proyecto1_Main {
                     switch (subop) {
 
                         case 1: {//Mostrar lista de alumnos registrados
-                            for (Object i : alumnos_registrados.keySet()) {
-                                //System.out.println(i);
-                                System.out.println("\nNo.Cuenta: " + i);
-                                alumnos_registrados.get(i).mostrarAlumno();
-                                System.out.println();
+                            if (!alumnos_registrados.isEmpty()){
+                                for (Object i : alumnos_registrados.keySet()) {
+                                    // System.out.println(i);
+                                    System.out.println("\nNo.Cuenta: " + i);
+                                    alumnos_registrados.get(i).mostrarAlumno();
+                                    System.out.println();
+                                }
+                            }else{
+                                System.out.println("No hay alumnos registrados");
                             }
-                            //for (int i = 0; i<)
                         }break;
 
                         //Mostrar lista de alumnos inscritos
 
-                     /*   case 2: {//Mostrar lista de asignaturas
-                        }break;}*/
-
-                        case 3: {//Mostrar lista de profesores
-                            int j = 1;
-                            for (Profesor i : LisProfesores) {
-                                System.out.printf("Profesor %d:", j);
-                                i.MostrarProfesor();
-                                j++;
+                        case 2: {//Mostrar lista de asignaturas
+                            if (!listaMaterias.isEmpty()){
+                                for (Asignatura materia : listaMaterias) {
+                                    materia.mostrarAsignatura();
+                                }
+                            }else{
+                                System.out.println("No hay materias registradas");
                             }
-
                         }break;
 
-                        /*
+                        case 3: {//Mostrar lista de profesores
+                            if (LisProfesores.isEmpty()){
+                                int j = 1;
+                                for (Profesor i : LisProfesores) {
+                                    System.out.printf("Profesor %d:", j);
+                                    i.MostrarProfesor();
+                                    j++;
+                                }
+                            }else{
+                                System.out.println("No hay profesores registrados");
+                            }  
+                        }break;
+
+                        
                         case 4:{//Mostrar lista de grupos
                             // get keys() from Hashtable and iterate
                             Enumeration<Integer> llaves = grupos.keys();
@@ -203,7 +235,7 @@ public class Proyecto1_Main {
                                     k.MostrarGrupo();
                                 }
                             }
-                        }*/
+                        }
                     }
 
                 }break;
@@ -213,6 +245,8 @@ public class Proyecto1_Main {
 
         sc.close();
     } // Fin del Main
+
+
     static public String Horario(){
         Scanner sc = new Scanner(System.in);
         int opcion;
@@ -304,5 +338,5 @@ public class Proyecto1_Main {
         sc.close();
         return dias;
     }
-    }//Fin de la Clase
+}//Fin de la Clase
 

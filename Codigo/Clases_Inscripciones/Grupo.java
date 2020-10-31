@@ -3,7 +3,8 @@ package Clases_Inscripciones;
 import java.util.ArrayList;
 
 public class Grupo {
-    int numGrupo;   //No puede ser estatica, porque habra grupos de diferentes materias
+    int numGrupo;
+    //No puede ser estatica, porque habra grupos de diferentes materias
     String horas;
     ArrayList<String> dias;
     String salon;
@@ -17,6 +18,10 @@ public class Grupo {
         this.salon = salon;
         this.profe = profe;
         this.materia = materia;
+    }
+
+    public int getNumGrupo() {
+        return this.numGrupo;
     }
 
     private void MostrarHorario(){
