@@ -25,19 +25,19 @@ public class Grupo {
     }
 
     private void MostrarHorario(){
-        System.out.println("Horas: " + horas);
-        System.out.println("Dias:");
-        dias.forEach((d) -> System.out.printf("%s\t",d));
+        System.out.println("\tHoras: " + horas);
+        System.out.println("\tDias:");
+        dias.forEach((d) -> System.out.printf("\t%s",d));
     }
 
     public void MostrarGrupo(){
 //        System.out.printf("Materia %s:\n",materia.nombre);
         // No se imprime la informacion de la materia porque eso se hace solo una vez por materia en el main -C
-        System.out.println("Grupo " + numGrupo);
+        System.out.println("\tGrupo " + numGrupo);
         MostrarHorario();
-        System.out.println("Salon: " + salon);
-        System.out.println("Profesor:");
-        System.out.print("\t");profe.MostrarProfesor();
+        System.out.println("\tSalon: " + salon);
+        System.out.println("\tProfesor:");
+        profe.MostrarProfesor();
     }
 
 }

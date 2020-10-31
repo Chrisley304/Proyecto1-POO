@@ -5,11 +5,11 @@ import java.util.*;
 public class Asignatura{
     String nombre;
     int clave;
-    int no_grupos;
+    public int no_grupos;
     int creditos;
     boolean lab; //laboratorio extra
     //mejor ponerlo en la eleccion (main) o creacion de la asignatura
-    String[] divisiones = new String[] { "División de Ciencias Básicas", "División de Ingenierías Civil y Geomática", "División de Ingeniería Eléctrica", "División de Ingeniería en Ciencias de la Tierra","División de Ingeniería Mecánica e Industrial","División de Ciencias Sociales y Humanidades","División de Educación Continua y a Distancia"};
+    String[] divisiones;
     char tipo; //teoría o laboratorio normal
     String division;
 
@@ -61,23 +61,15 @@ public class Asignatura{
         System.out.println("NÚMERO DE GRUPOS EXISTENTES: " + this.no_grupos);
         System.out.println("CRÉDITOS: " + this.creditos);
         System.out.println("DIVISIÓN: " + this.division);
+        System.out.println();
     }
 
 
 
     //USO EXCLUSIVO DE INSCRIPCIÓN
     public static boolean existeAsignatura(int clave, ArrayList<Asignatura> materias ){
-        HashMap<Integer, String> asignaturas = new HashMap<>();
-
-        /*asignaturas.put(1, "Fisica");
-        asignaturas.put(2, "EDA 2");
-        asignaturas.put(3, "Algebra");
-        asignaturas.put(4, "Calculo Integral");
-        asignaturas.put(5, "Calculo Vectorial");
-        asignaturas.put(6, "Programacion Orientada a Objetos");
-        asignaturas.put(7, "Redaccion y Exposicion de Temas de Ingeniería");*/
-        for (int i : asignaturas.keySet()) {
-            if(i==clave)
+        for (Asignatura i : materias) {
+            if(i.clave == clave)
                 return true;
         }
         return false;

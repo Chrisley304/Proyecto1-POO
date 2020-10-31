@@ -17,7 +17,7 @@ public class Proyecto1_Main {
         
         System.out.println("**********  Proyecto 1: Sistema de Inscripciones  **********");
         do{
-            System.out.println("MENÚ PRINCIPAL: \n1) Registar Alumnos\n2) Registrar Asignatura\n3) Registrar profesor\n4) Abrir nuevo grupo\n5) Inscribir alumno\n6) Mostrar elementos\n7) Salir");
+            System.out.println("\nMENÚ PRINCIPAL: \n1) Registar Alumnos\n2) Registrar Asignatura\n3) Registrar profesor\n4) Abrir nuevo grupo\n5) Inscribir alumno\n6) Mostrar elementos\n7) Salir");
             opcion = sc.nextInt();
             sc.nextLine();
             switch(opcion) {
@@ -56,10 +56,11 @@ public class Proyecto1_Main {
                     System.out.println("Creditos: ");
                     creditos = sc.nextInt();
                     System.out.print("Division: ");
+                    sc.nextLine();
                     division = sc.nextLine();
-                    sc.next();
                     System.out.print("La materia tiene Laboratorio(L+)? (si/no) :  ");
                     String siono = sc.nextLine();
+                    System.out.println();
                     siono = siono.toLowerCase();
                     laboratorio = siono.equals("si");
 
@@ -108,13 +109,14 @@ public class Proyecto1_Main {
                             horas = Horario();
                             ArrayList<String> dias = Dias();
                             System.out.println("Salon: ");
+                            sc.nextLine();
                             salon = sc.nextLine();
-                            Asignatura materia = listaMaterias.get(clave);
+                            Asignatura materia = listaMaterias.get(numDeGrupo-1); // <--
                             int k = 0;
                             for (Profesor i : LisProfesores){ // Mostrar profesores disponible
                                 k++;
                                 System.out.println("Por favor elija uno de los siguientes profesores\nNota: Si se requiere ver la informacion del profesor, favor de ir a la opcion para hacerlo (6)\n");
-                                System.out.println( k +") Profesor " + i.getNombre() + i.getApellido());
+                                System.out.println( k +") Profesor " + i.getNombre() + " " + i.getApellido());
                             }
                             int opcionProf = sc.nextInt();
                             while (opcionProf > k || opcionProf<1){
@@ -131,6 +133,8 @@ public class Proyecto1_Main {
                                 k++;
                             }
                             lista.add(new Grupo(numDeGrupo, horas, dias, salon, profe, materia));
+                            int indice = listaMaterias.indexOf(materia);
+                            listaMaterias.get(indice).no_grupos++;
                             grupos.replace(clave, lista); //Se reemplaza la lista con menos datos con la nueva con mas datos
                         } else {
                             System.out.println("La materia ingresada no existe :(");
@@ -212,7 +216,7 @@ public class Proyecto1_Main {
                             if (!LisProfesores.isEmpty()){
                                 int j = 1;
                                 for (Profesor i : LisProfesores) {
-                                    System.out.printf("Profesor %d:", j);
+                                    System.out.printf("Profesor %d:\n", j);
                                     i.MostrarProfesor();
                                     j++;
                                 }
@@ -251,7 +255,7 @@ public class Proyecto1_Main {
         int opcion;
         String horas = "";
         while (horas.isEmpty()){
-            System.out.println("Por favor seleccione uno de los siguientes horarios:\n1) 7:00-9:00\n2) 9:00-11:00\n3) 11:00-13:00\n4) 13:00-15:00\n5) 15:00-17:00\n6) 17:00-19:00\n7) 19:00-21:00\n8) 21:00-23:00\n");
+            System.out.println("Por favor seleccione uno de los siguientes horarios:\n1) 7:00-9:00\n2) 9:00-11:00\n3) 11:00-13:00\n4) 13:00-15:00\n5) 15:00-17:00\n6) 17:00-19:00\n7) 19:00-21:00\n8) 21:00-23:00");
             opcion = sc.nextInt();
             switch (opcion){
                 case 1:{
@@ -291,7 +295,6 @@ public class Proyecto1_Main {
                 }break;
             }
         }
-        sc.close();
         return horas;
     }
 
@@ -334,7 +337,6 @@ public class Proyecto1_Main {
                 }break;
             }
         }
-        sc.close();
         return dias;
     }
 }//Fin de la Clase

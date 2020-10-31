@@ -41,9 +41,10 @@ public class Profesor{
 	}*/
 
 	public void MostrarProfesor(){
-		System.out.printf("Nombre del Profesor: %s\n",this.nombre);
-		System.out.printf("Apellido del Profesor: %s\n",this.apellido);
-		System.out.printf("Titulo: %s\n",this.titulo);
+		System.out.printf("\t\tNombre del Profesor: %s\n",this.nombre);
+		System.out.printf("\t\tApellido del Profesor: %s\n",this.apellido);
+		System.out.printf("\t\tTitulo: %s\n",this.titulo);
+		System.out.println();
 	}
 
 
