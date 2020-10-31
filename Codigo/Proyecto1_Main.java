@@ -10,9 +10,7 @@ public class Proyecto1_Main {
         int opcion;//,numAl=0,numAs=0,numProf=0,numGrupos=0;
 //        int n=0;  <-- Esta variable nunca se ocupa xd -C
 
-        //Bere->HashMap
-        //Fer->HashSet
-        Map<Integer, Alumno> alumnos_registrados = new HashMap<Integer, Alumno>();
+        Map<Integer, Alumno> alumnos_registrados = new HashMap<>();
         ArrayList<Asignatura> listaMaterias = new ArrayList<>();
 
        // ArrayList<Alumno> alumnos_registrados = new ArrayList<>();
@@ -25,11 +23,11 @@ public class Proyecto1_Main {
             System.out.println("MENÚ PRINCIPAL: \n1) Registar Alumnos\n2) Registrar Asignatura\n3) Registrar profesor\n4) Abrir nuevo grupo\n5) Inscribir alumno\n6) Mostrar elementos\n7) Salir");
             opcion = sc.nextInt();
             sc.nextLine();
-            switch(opcion){
-                
-                case 1:{
-                    String nombre,apellido,semestre,correo;
-                    int edad,numCuenta;
+            switch(opcion) {
+
+                case 1: {
+                    String nombre, apellido, semestre, correo;
+                    int edad, numCuenta;
                     System.out.println("Ingrese los datos del alumno: ");
                     System.out.println("Nombre: ");
                     nombre = sc.nextLine();
@@ -47,11 +45,11 @@ public class Proyecto1_Main {
                     alumnos_registrados.put(numCuenta, new Alumno(nombre, apellido, edad, semestre, correo));
                     break;
                 }
-                
-                case 2:{
-                    String nombre,division;
+
+                case 2: {
+                    String nombre, division;
                     boolean laboratorio;
-                    int clave,creditos;
+                    int clave, creditos;
 
                     System.out.println("Ingrese la información de la materia: ");
                     System.out.println("Nombre: ");
@@ -59,11 +57,11 @@ public class Proyecto1_Main {
                     System.out.println("Clave: ");
                     clave = sc.nextInt();
                     System.out.println("Creditos: ");
-                    creditos= sc.nextInt();
+                    creditos = sc.nextInt();
                     System.out.print("Division: ");
                     nombre = sc.nextLine();
                     division = sc.nextLine();
-                    System.out.print("La materia tiene Laboratorio(L+)? (si/no)");
+                    System.out.print("La materia tiene Laboratorio(L+)? (si/no) :  ");
                     String siono = sc.nextLine();
                     siono.toLowerCase();
                     laboratorio = siono.equals("si");
@@ -71,10 +69,10 @@ public class Proyecto1_Main {
                     Asignatura asig = new Asignatura(nombre, clave, creditos, division, laboratorio);
                     listaMaterias.add(asig);
 
-                    if(laboratorio){
+                    if (laboratorio) {
                         int claveLab;
                         String nombreLab;
-                        //Se le suma 5000 porque asi es la inscripcion en la facultad
+                        //Se le suma 5000 porque asi es la inscripción en la facultad
                         claveLab = clave + 5000;
                         nombreLab = "Laboratorio de " + nombre;
                         Asignatura asigLab = new Asignatura(nombreLab, claveLab, creditos, division);
@@ -82,9 +80,9 @@ public class Proyecto1_Main {
                     }
                     break;
                 }
- 
-                case 3:{
-                    String nombre,apellido,titulo;
+
+                case 3: {
+                    String nombre, apellido, titulo;
                     System.out.println("Ingrese la información del profesor: ");
                     System.out.println("Nombre: ");
                     nombre = sc.nextLine();
@@ -93,60 +91,75 @@ public class Proyecto1_Main {
                     System.out.println("Grado academico: ");
                     titulo = sc.nextLine();
 
-                    Profesor prof = new Profesor(nombre,apellido,titulo);
+                    Profesor prof = new Profesor(nombre, apellido, titulo);
                     LisProfesores.add(prof);
                     break;
                 }
-                
+
                 case 4: {   // FALTA incluir la forma de elegir el profesor para la materia
-                    System.out.println("Ingresa la clave de la materia, de la cual se abrira el grupo: ");
-                    int clave = sc.nextInt();
-                    if (Asignatura.existeAsignatura(clave,listaMaterias)){ // Si existe la materia devuelve true
-                        if (!grupos.containsKey(clave)){        // Hash = { 1890: {}, 65655: { 1: 2 2 6 6 }  5526: {} , 900:{3,6, 7}}
-                            ArrayList<Grupo> nuevogrup = new ArrayList<>();
-                            grupos.put(clave, nuevogrup);
+                    if (!LisProfesores.isEmpty()){ // Se verifica si hay profesores registrados, ya que no se pueden crear grupos sin profesores
+                        System.out.println("Ingresa la clave de la materia, de la cual se abrira el grupo: ");
+                        int clave = sc.nextInt();
+                        if (Asignatura.existeAsignatura(clave, listaMaterias)) { // Si existe la materia devuelve true
+                            if (!grupos.containsKey(clave)) {        // Hash = { 1890: {}, 65655: { 1: 2 2 6 6 }  5526: {} , 900:{3,6, 7}}
+                                ArrayList<Grupo> nuevogrup = new ArrayList<>();
+                                grupos.put(clave, nuevogrup);
+                            }
+
+                            ArrayList<Grupo> lista = grupos.get(clave);
+                            String horas, salon;
+                            int numDeGrupo = lista.size() + 1;
+                            System.out.println("Ingrese la información para abrir un grupo: ");
+                            horas = Horario();
+                            ArrayList<String> dias = Dias();
+                            System.out.println("Salon: ");
+                            salon = sc.nextLine();
+                            Asignatura materia = listaMaterias.get(clave);
+                            int k = 0;
+                            for (Profesor i : LisProfesores){ // Mostrar profesores disponible
+                                k++;
+                                System.out.println("Por favor elija uno de los siguientes profesores\nNota: Si se requiere ver la informacion del profesor, favor de ir a la opcion para hacerlo (6)\n");
+                                System.out.println( k +") Profesor " + i.getNombre() + i.getApellido());
+                            }
+                            int opcionProf = sc.nextInt();
+                            if (opcionProf > k || opcionProf<1){
+                                System.out.println("La opcion ingresada es incorrecta, por favor ingrese una correcta:");
+                                opcionProf = sc.nextInt();
+                            }
+                            k=1;
+                            Profesor profe = null;
+                            for (Profesor i : LisProfesores){ // Mostrar profesores disponible
+                                if (k == opcionProf){
+                                    profe = i;
+                                    break;
+                                }
+                            }
+                            lista.add(new Grupo(numDeGrupo, horas, dias, salon, profe, materia));
+                            grupos.replace(clave, lista); //Se reemplaza la lista con menos datos con la nueva con mas datos
+                        } else {
+                            System.out.println("La materia ingresada no existe :(");
                         }
-
-                        ArrayList<Grupo> lista = grupos.get(clave);
-                        String horas, salon;
-                        int numDeGrupo;
-                        numDeGrupo = lista.size() + 1;
-                        System.out.println("Ingrese la información para abrir un grupo: ");
-                        horas = Horario();
-                        ArrayList<String> dias = Dias();
-                        System.out.println("Salon: ");
-                        salon = sc.nextLine();
-                        Asignatura materia = listaMaterias.get(clave);
-                        /*Mostrar lista de profesores
-                          Asignar profesor
-
-                          Mostrar lista de Asignaturas
-                          Asignar Asignatura
-                         */            //El profesor y la materia provienen de la lista de esas clases
-                  /*      lista.add(new Grupo(numDeGrupo, horas, dias, salon, profe, materia));
-                        grupos.replace(clave, lista); //Se reemplaza la lista con menos datos con la nueva con mas datos
                     }else{
-                        System.out.println("La materia ingresada no existe :(");
-                    }*/
-                    break;
-                }
-            }
-                /*
-                case 5:{
-                    //Inscribir alumnos
-                    //    Mostrar grupos
-                    // Aquí utilizar el método Asociar grupo que esta dentro de la clase Alumno para el alumno que se vaya a inscribir
-                    //    Pedir número de cuenta y clave de grupo
-                    /*
-                    H = {numCuenta,Alumno alu}
-                    if(H.containsKey(numCuenta)) //SI EXISTE EL ALUMNO{
+                        System.out.println("No hay profesores registrados, por favor registre profesores y intente de nuevo.");
+                    }
+                }break;
+
+                case 5:{        // Hacer este caso
+
+
+                //Inscribir alumnos
+                //    Mostrar grupos
+                // Aquí utilizar el método Asociar grupo que esta dentro de la clase Alumno para el alumno que se vaya a inscribir
+                //    Pedir número de cuenta y clave de grupo
+
+                    /*H = {numCuenta,Alumno alu}
+                    if(H.containsKey(numCuenta)){ //SI EXISTE EL ALUMNO
                        
                         //grupos maximo 3
-                        int arreglo[][] = [3][clave]                        
-                        ""
+                        int arreglo[][] = [3][clave]
                     }*/
-              /*     break;
-                }*/
+                }break;
+
                 case 6: {
                     System.out.println("\t1) Mostrar lista de alumnos regitrados\n\t2) Mostrar lista de asignaturas\n\t3) Mostrar lista de profesores\n\t4) Mostrar lista de grupos");
                     int subop = sc.nextInt();
@@ -157,10 +170,10 @@ public class Proyecto1_Main {
                                 //System.out.println(i);
                                 System.out.println("\nNo.Cuenta: " + i);
                                 alumnos_registrados.get(i).mostrarAlumno();
+                                System.out.println();
                             }
                             //for (int i = 0; i<)
-                        }
-                        break;
+                        }break;
 
                         //Mostrar lista de alumnos inscritos
 
@@ -174,8 +187,9 @@ public class Proyecto1_Main {
                                 i.MostrarProfesor();
                                 j++;
                             }
-                            break;
-                        }
+
+                        }break;
+
                         /*
                         case 4:{//Mostrar lista de grupos
                             // get keys() from Hashtable and iterate
@@ -189,17 +203,16 @@ public class Proyecto1_Main {
                                     k.MostrarGrupo();
                                 }
                             }
-                        }
-                    }*/
+                        }*/
                     }
 
                 }break;
-        }
 
-    }while(opcion != 7);
+            }
+        }while(opcion != 7);
+
         sc.close();
     } // Fin del Main
-
     static public String Horario(){
         Scanner sc = new Scanner(System.in);
         int opcion;
@@ -291,6 +304,5 @@ public class Proyecto1_Main {
         sc.close();
         return dias;
     }
-
-}   //Fin de la Clase
+    }//Fin de la Clase
 
