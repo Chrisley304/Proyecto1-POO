@@ -9,7 +9,7 @@ public class Proyecto1_Main {
         int opcion;//,numAl=0,numAs=0,numProf=0,numGrupos=0;
 //        int n=0;  <-- Esta variable nunca se ocupa xd -C
         
-        // Declaracion de listas: 
+        // Declaración de listas:
         Map<Integer, Alumno> alumnos_registrados = new HashMap<>();
         ArrayList<Asignatura> listaMaterias = new ArrayList<>();
         HashSet<Profesor> LisProfesores = new HashSet<>();
@@ -43,7 +43,7 @@ public class Proyecto1_Main {
                     break;
                 }
 
-                case 2: {
+                case 2: { // Registrar Asignatura
                     String nombre, division;
                     boolean laboratorio;
                     int clave, creditos;
@@ -56,11 +56,11 @@ public class Proyecto1_Main {
                     System.out.println("Creditos: ");
                     creditos = sc.nextInt();
                     System.out.print("Division: ");
-                    nombre = sc.nextLine();
                     division = sc.nextLine();
+                    sc.next();
                     System.out.print("La materia tiene Laboratorio(L+)? (si/no) :  ");
                     String siono = sc.nextLine();
-                    siono.toLowerCase();
+                    siono = siono.toLowerCase();
                     laboratorio = siono.equals("si");
 
                     Asignatura asig = new Asignatura(nombre, clave, creditos, division, 'T' ,laboratorio);
@@ -71,12 +71,12 @@ public class Proyecto1_Main {
                         //Se le suma 5000 porque asi es la inscripción en la facultad
                         claveLab = clave + 5000;
                         nombreLab = "Laboratorio de " + nombre;
-                        Asignatura asigLab = new Asignatura(nombreLab, claveLab, creditos, division, 'L', laboratorio);
+                        Asignatura asigLab = new Asignatura(nombreLab, claveLab, creditos, division, 'L', false);
                         listaMaterias.add(asigLab);
                     }
                 }break;
 
-                case 3: {
+                case 3: { // Registrar profesor
                     String nombre, apellido, titulo;
                     System.out.println("Ingrese la información del profesor: ");
                     System.out.println("Nombre: ");
@@ -145,7 +145,6 @@ public class Proyecto1_Main {
                         System.out.println("No existen alumnos registrados");
                         break;
                     }else{
-                        int k = 0;
                         System.out.println("Ingresa numero de cuenta:");
                         int numCuenta = sc.nextInt();
                         
@@ -186,7 +185,7 @@ public class Proyecto1_Main {
 
                         case 1: {//Mostrar lista de alumnos registrados
                             if (!alumnos_registrados.isEmpty()){
-                                for (Object i : alumnos_registrados.keySet()) {
+                                for (int i : alumnos_registrados.keySet()) {
                                     // System.out.println(i);
                                     System.out.println("\nNo.Cuenta: " + i);
                                     alumnos_registrados.get(i).mostrarAlumno();
@@ -210,7 +209,7 @@ public class Proyecto1_Main {
                         }break;
 
                         case 3: {//Mostrar lista de profesores
-                            if (LisProfesores.isEmpty()){
+                            if (!LisProfesores.isEmpty()){
                                 int j = 1;
                                 for (Profesor i : LisProfesores) {
                                     System.out.printf("Profesor %d:", j);
@@ -226,7 +225,7 @@ public class Proyecto1_Main {
                         case 4:{//Mostrar lista de grupos
                             // get keys() from Hashtable and iterate
                             Enumeration<Integer> llaves = grupos.keys();
-                            while(llaves.hasMoreElements()) { //mientras no este vacio
+                            while(llaves.hasMoreElements()) { //mientras no este vació
                                 Integer key = llaves.nextElement();
                                 ArrayList<Grupo> temp = grupos.get(key);    // Obtiene la lista de grupos por materia
                                 Grupo materia = temp.get(0);
