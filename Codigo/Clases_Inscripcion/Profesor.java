@@ -19,10 +19,6 @@ public class Profesor{
 		this.titulo = titulo;
 	}
 
-	public String getTitulo(){
-		return this.titulo;
-	}
-
 	public String getNombre(){
 		return this.nombre;
 	}
@@ -30,15 +26,6 @@ public class Profesor{
 	public String getApellido(){
 		return this.apellido;
 	}
-
-/*	public static void mostrarProfesores(){
-		int j = 1;
-		//HashSet<Profesor> conjuntoProfesores = new HashSet<Profesor>();
-		for(Profesor i : conjuntoProfesores){
-			System.out.println("Profesor " + j + ": " + i.getTitulo()+ " " + i.getNombre() + " " + i.getApellido());
-			j++;
-		}
-	}*/
 
 	public void MostrarProfesor(){
 		System.out.printf("\t\tNombre del Profesor: %s\n",this.nombre);

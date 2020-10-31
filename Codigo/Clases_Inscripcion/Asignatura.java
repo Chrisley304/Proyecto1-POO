@@ -8,8 +8,6 @@ public class Asignatura{
     public int no_grupos;
     int creditos;
     boolean lab; //laboratorio extra
-    //mejor ponerlo en la eleccion (main) o creacion de la asignatura
-    String[] divisiones;
     char tipo; //teoría o laboratorio normal
     String division;
 
@@ -18,7 +16,7 @@ public class Asignatura{
     }
 
     //Constructor
-    public Asignatura(String nombre, int clave, int creditos,String division,char tipo, boolean lab){ // No entendi como funcionaba el tipo -C
+    public Asignatura(String nombre, int clave, int creditos,String division,char tipo, boolean lab){ // No entendí como funcionaba el tipo -C
         this.nombre = nombre;
         this.clave = clave;
         this.creditos = creditos;
@@ -29,7 +27,7 @@ public class Asignatura{
     }
 
 
-    public void setNo_grupos(int no_grupos){ this.no_grupos = no_grupos;} // Set necesesario para una vez creados los grupos darle valor a la variable, (ej. aumentando en 1 en el main y pasandola como parametro en el set) -C
+    public void setNo_grupos(int no_grupos){ this.no_grupos = no_grupos;} // Set necesario para una vez creados los grupos darle valor a la variable, (ej. aumentando en 1 en el main y pasándola como parámetro en el set) -C
 
     public String getDivision(){
         return this.division;
@@ -111,27 +109,10 @@ public class Asignatura{
 
 
      public static Asignatura obtenerMateria(int clave, ArrayList<Asignatura> materias ){
-
-        //Asignatura a = new Asignatura();
         int i = 0;
         while(materias.get(i).getClave()!=clave){
             i++;
-            //return materias.get(i)
         }
         return materias.get(i);
-/*
-        for(int i = 0;i<materias.size();i++){
-            if(materias.get(i).getClave() == clave){
-                a.setClave(materias.get(i).getClave());
-                a.setTipo(materias.get(i).getTipo());
-                a.setCreditos(materias.get(i).getCreditos());
-                a.setNombre(materias.get(i).getNombre());
-                a.setNoGrupos(materias.get(i).getNoGrupos());
-                a.setDivision(materias.get(i).getDivision());  
-                break; 
-            }
-            
-        }
-        return a;*/
     }
 }

@@ -6,8 +6,7 @@ import java.util.*;
 public class Proyecto1_Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int opcion;//,numAl=0,numAs=0,numProf=0,numGrupos=0;
-//        int n=0;  <-- Esta variable nunca se ocupa xd -C
+        int opcion;
         
         // Declaración de listas:
         Map<Integer, Alumno> alumnos_registrados = new HashMap<>();
@@ -97,7 +96,7 @@ public class Proyecto1_Main {
                         System.out.println("Ingresa la clave de la materia, de la cual se abrira el grupo: ");
                         int clave = sc.nextInt();
                         if (Asignatura.existeAsignatura(clave, listaMaterias)) { // Si existe la materia devuelve true
-                            if (!grupos.containsKey(clave)) {        // Hash = { 1890: {}, 65655: { 1: 2 2 6 6 }  5526: {} , 900:{3,6, 7}}
+                            if (!grupos.containsKey(clave)) {
                                 ArrayList<Grupo> nuevogrup = new ArrayList<>();
                                 grupos.put(clave, nuevogrup);
                             }
@@ -111,14 +110,10 @@ public class Proyecto1_Main {
                             System.out.println("Salon: ");
                             sc.nextLine();
                             salon = sc.nextLine();
-                           
-
-
-                            //Asignatura materia = listaMaterias.get(numDeGrupo-1); // <--
                             int k = 0;
+                            System.out.println("Por favor elija uno de los siguientes profesores\nNota: Si se requiere ver la informacion del profesor, favor de ir a la opcion para hacerlo (6)\n");
                             for (Profesor i : LisProfesores){ // Mostrar profesores disponible
                                 k++;
-                                System.out.println("Por favor elija uno de los siguientes profesores\nNota: Si se requiere ver la informacion del profesor, favor de ir a la opcion para hacerlo (6)\n");
                                 System.out.println( k +") Profesor " + i.getNombre() + " " + i.getApellido());
                             }
                             int opcionProf = sc.nextInt();
@@ -135,16 +130,6 @@ public class Proyecto1_Main {
                                 }
                                 k++;
                             }
-
-
-
-
-                            /*
-                            for(Asignatura n : listaMaterias){
-                            	if(n.getClave() == clave){
-                            		return n;
-                            	}	
-                            }*/
 
                             //OBJETO ASIGNATURA QUE CORRESPONDA A LA CLAVE DEL USUARIO
                             lista.add(new Grupo(numDeGrupo, horas, dias, salon, profe, Asignatura.obtenerMateria(clave,listaMaterias))); //ES ESTE EL PROBLEMA PARA ESCOGER LA MATERIA EN listaMaterias

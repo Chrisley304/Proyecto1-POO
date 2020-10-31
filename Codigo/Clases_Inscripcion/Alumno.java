@@ -2,7 +2,7 @@ package Clases_Inscripcion;
 
 public class Alumno {
     String nombre,apellido,semestre,correo;
-    int edad,indice=0;
+    int edad;
     public static int numeroAlumnos;
     Grupo[] listaGrupos = new Grupo[3];
     int numGrupos = 0;
