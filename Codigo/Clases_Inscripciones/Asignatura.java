@@ -61,6 +61,7 @@ public class Asignatura{
         System.out.println("NÚMERO DE GRUPOS EXISTENTES: " + this.no_grupos);
         System.out.println("CRÉDITOS: " + this.creditos);
         System.out.println("DIVISIÓN: " + this.division);
+        System.out.println("TIPO: " + this.tipo);
         System.out.println();
     }
 

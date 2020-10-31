@@ -157,7 +157,7 @@ public class Proyecto1_Main {
                             System.out.println("Materias con claves registradas en el sistema:");
                             
                             for(Asignatura i : listaMaterias){
-                                System.out.println("Materia : " + i.getNombre() + " Clave: " + i.getClave());
+                                System.out.println("\tMateria : " + i.getNombre() + " Clave: " + i.getClave());
                             }
                             
                             System.out.println("Ingrese la clave de la Asignatura: ");
