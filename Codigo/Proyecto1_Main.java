@@ -75,7 +75,7 @@ public class Proyecto1_Main {
                         creditos = sc.nextInt();
                     }
                     System.out.print("Seleccione una division: ");
-                    String[] divisiones = new String[] { "División de Ciencias Básicas", "División de Ingenierías Civil y Geomática", "División de Ingeniería Eléctrica", "División de Ingeniería en Ciencias de la Tierra","División de Ingeniería Mecánica e Industrial","División de Ciencias Sociales y Humanidades","División de Educación Continua y a Distancia"};
+                    String[] divisiones = new String[] { "Division de Ciencias Basicas", "Division de Ingenierias Civil y Geomatica", "Division de Ingenieria Electrica", "Division de Ingenieria en Ciencias de la Tierra","Division de Ingenieria Mecanica e Industrial","Division de Ciencias Sociales y Humanidades","Division de Educacion Continua y a Distancia"};
 
                     for (int i = 0; i < divisiones.length; i++) {
                         System.out.printf("%d) %s\n",i+1,divisiones[i]);
