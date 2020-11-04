@@ -12,7 +12,6 @@ public class Alumno {
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
-        //this.numCuenta = numCuenta;
         this.semestre = semestre;
         this.correo = correo;
     }
@@ -20,6 +19,7 @@ public class Alumno {
     public void AsignarGrupo(Grupo grupo){
         if(numGrupos != 3){
             listaGrupos[numGrupos] = grupo;
+            numGrupos++;
         }else{
             System.out.println("Lo sentimos, el alumno ya llego al limite de inscripciones (3)");
         }

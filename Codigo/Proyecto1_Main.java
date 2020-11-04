@@ -82,11 +82,11 @@ public class Proyecto1_Main {
                     }
                     System.out.print("Opcion: ");
                     int d = sc.nextInt();
-                    while (d < 0 || d >=divisiones.length){
+                    while (d < 1 || d > divisiones.length){
                         System.out.print("Por favor elige una opcion correcta\nOpcion: ");
                         d = sc.nextInt();
                     }
-                    division = divisiones[d];
+                    division = divisiones[d-1];
                     System.out.print("La materia tiene Laboratorio(L+)? (si/no) :  ");
                     String siono = sc.nextLine();
                     System.out.println();
