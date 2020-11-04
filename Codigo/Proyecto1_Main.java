@@ -37,7 +37,7 @@ public class Proyecto1_Main {
                     }
                     System.out.println("Numero de cuenta (9 digitos): ");
                     numCuenta = sc.nextInt();
-                    while (String.valueOf(numCuenta).length() != 9){//317332623
+                    while (String.valueOf(numCuenta).length() != 9){
                         System.out.print("El numero de cuenta, no es correcto, por favor intentelo de nuevo\n Num de cuenta: ");
                         numCuenta = sc.nextInt();
                     }
@@ -48,7 +48,7 @@ public class Proyecto1_Main {
                     correo = sc.nextLine();
                     while (correo.indexOf('@') == -1) {
                         System.out.print("El correo, no es correcto, debe incluir '@' para ser correcto. Por favor intentelo de nuevo\n Correo: ");
-                        numCuenta = sc.nextInt();
+                        correo = sc.nextLine();
                     }
                     alumnos_registrados.put(numCuenta, new Alumno(nombre, apellido, edad, semestre, correo));
                     break;
