@@ -78,7 +78,7 @@ public class Proyecto1_Main {
                     String[] divisiones = new String[] { "División de Ciencias Básicas", "División de Ingenierías Civil y Geomática", "División de Ingeniería Eléctrica", "División de Ingeniería en Ciencias de la Tierra","División de Ingeniería Mecánica e Industrial","División de Ciencias Sociales y Humanidades","División de Educación Continua y a Distancia"};
 
                     for (int i = 0; i < divisiones.length; i++) {
-                        System.out.printf("%d) %s",i+1,divisiones[i]);
+                        System.out.printf("%d) %s\n",i+1,divisiones[i]);
                     }
                     System.out.print("Opcion: ");
                     int d = sc.nextInt();
@@ -88,6 +88,7 @@ public class Proyecto1_Main {
                     }
                     division = divisiones[d-1];
                     System.out.print("La materia tiene Laboratorio(L+)? (si/no) :  ");
+                    sc.nextLine();
                     String siono = sc.nextLine();
                     System.out.println();
                     siono = siono.toLowerCase();
@@ -200,6 +201,10 @@ public class Proyecto1_Main {
                                 }
                                 System.out.print("Grupo a inscribir: ");
                                 int seleccion = sc.nextInt() - 1;
+                                while (seleccion < 0 || seleccion >= gruposmateria.size()){
+                                    System.out.print("El grupo ingresado no existe, favor de ingresar un numero de grupo correcto:\nGrupo: ");
+                                    seleccion = sc.nextInt() - 1;
+                                }
                                 alumnos_registrados.get(numCuenta).AsignarGrupo(gruposmateria.get(seleccion));
                                 grupos.get(claveAsig).get(seleccion).Addalumnos(String.valueOf(numCuenta));
                             }else{
