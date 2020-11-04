@@ -74,7 +74,7 @@ public class Proyecto1_Main {
                         System.out.print("Lo sentimos, los creditos no pueden ser negativos ni mayores a 20, Intentalo de nuevo\nCreditos: ");
                         creditos = sc.nextInt();
                     }
-                    System.out.print("Seleccione una division: ");
+                    System.out.print("Seleccione una division: \n");
                     String[] divisiones = new String[] { "Division de Ciencias Basicas", "Division de Ingenierias Civil y Geomatica", "Division de Ingenieria Electrica", "Division de Ingenieria en Ciencias de la Tierra","Division de Ingenieria Mecanica e Industrial","Division de Ciencias Sociales y Humanidades","Division de Educacion Continua y a Distancia"};
 
                     for (int i = 0; i < divisiones.length; i++) {
