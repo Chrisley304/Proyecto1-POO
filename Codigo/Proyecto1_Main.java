@@ -37,7 +37,7 @@ public class Proyecto1_Main {
                     }
                     System.out.println("Numero de cuenta (9 digitos): ");
                     numCuenta = sc.nextInt();
-                    while (numCuenta != 9){
+                    while (String.valueOf(numCuenta).length() != 9){//317332623
                         System.out.print("El numero de cuenta, no es correcto, por favor intentelo de nuevo\n Num de cuenta: ");
                         numCuenta = sc.nextInt();
                     }
